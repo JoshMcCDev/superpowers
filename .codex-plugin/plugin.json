@@ -1,14 +1,14 @@
 {
   "name": "superpowers",
-  "version": "7.0.1",
-  "description": "An agentic skills framework & software development methodology that works: planning, TDD, debugging, and collaboration workflows.",
+  "version": "7.0.1-bevy.1",
+  "description": "Superpowers workflows adapted for project-owned proof, scoped validation, and Bevy Dev Loop development.",
   "author": {
     "name": "Jesse Vincent",
     "email": "jesse@fsck.com",
     "url": "https://github.com/obra"
   },
   "homepage": "https://github.com/obra/superpowers",
-  "repository": "https://github.com/obra/superpowers",
+  "repository": "https://github.com/JoshMcCDev/superpowers",
   "license": "MIT",
   "keywords": [
     "brainstorming",

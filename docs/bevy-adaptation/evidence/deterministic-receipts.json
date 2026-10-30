@@ -1,0 +1,72 @@
+[
+  {
+    "command": [
+      "bash",
+      "tests/systematic-debugging/test-find-polluter.sh"
+    ],
+    "exit": 0,
+    "log": "polluter-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "tests/claude-code/test-executing-plans-scripts.sh"
+    ],
+    "exit": 0,
+    "log": "execution-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "tests/claude-code/test-sdd-workspace.sh"
+    ],
+    "exit": 0,
+    "log": "workspace-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "tests/codex/test-package-codex-plugin.sh"
+    ],
+    "exit": 0,
+    "log": "package-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "tests/codex/test-marketplace-manifest.sh"
+    ],
+    "exit": 0,
+    "log": "marketplace-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "tests/claude-code/test-worktree-path-policy.sh"
+    ],
+    "exit": 0,
+    "log": "worktree-path-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "tests/diagnosing-superpowers/test-skill-structure.sh"
+    ],
+    "exit": 0,
+    "log": "diagnosing-tests.txt"
+  },
+  {
+    "command": [
+      "bash",
+      "scripts/lint-shell.sh",
+      "skills/systematic-debugging/find-polluter.sh",
+      "skills/executing-plans/scripts/task-done",
+      "tests/systematic-debugging/test-find-polluter.sh",
+      "tests/codex/test-package-codex-plugin.sh",
+      "tests/claude-code/test-worktree-path-policy.sh",
+      "tests/claude-code/test-executing-plans-scripts.sh"
+    ],
+    "exit": 0,
+    "log": "lint.txt"
+  }
+]

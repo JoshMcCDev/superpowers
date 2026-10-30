@@ -2,6 +2,8 @@
 # Regression check: Superpowers should not route new worktrees through the old
 # global worktree directory.
 
+# These assertions intentionally search for a literal historical tilde path.
+# shellcheck disable=SC2088
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -53,7 +55,7 @@ assert_not_contains "$USING_SKILL" "Global path" "using-git-worktrees has no glo
 assert_contains "$USING_SKILL" 'default to `.worktrees/` at the project root' "using-git-worktrees defaults new manual worktrees to .worktrees/"
 
 assert_not_contains "$FINISHING_SKILL" "~/.config/superpowers/worktrees" "finishing-a-development-branch does not treat old global path as owned"
-assert_contains "$FINISHING_SKILL" '`.worktrees/` or `worktrees/`' "finishing-a-development-branch keeps project-local cleanup ownership"
+assert_contains "$FINISHING_SKILL" 'Directory spelling alone' "finishing-a-development-branch requires recorded cleanup ownership"
 
 assert_not_contains "$ROTOTILL_SPEC" "~/.config/superpowers/worktrees" "rototill spec does not preserve old global path policy"
 assert_not_contains "$ROTOTILL_PLAN" "~/.config/superpowers/worktrees" "rototill plan does not preserve old global path policy"

@@ -2,6 +2,14 @@
 
 Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
 
+## Fork adaptation
+
+This fork is adapting the existing Superpowers workflows for project-owned proof,
+scoped validation, and Bevy Dev Loop development. See
+source repository notes in `docs/bevy-adaptation/README.md` for the changes, evaluation
+identities, retained capabilities, and current validation limits. Upstream MIT
+licensing and attribution remain intact.
+
 ## Table of Contents
 
 - [How it works](#how-it-works)

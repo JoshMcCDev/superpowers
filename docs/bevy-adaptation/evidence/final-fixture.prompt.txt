@@ -1,0 +1,1 @@
+Repair increment(value) in calc.py so it increments by one. Use the existing test_calc.py regression and verify the failure before repairing it, then verify the repair. Keep the change narrow. Do not commit, install dependencies, delegate, or contact external services. Report commands, results, and evidence limits.

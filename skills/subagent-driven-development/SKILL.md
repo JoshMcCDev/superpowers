@@ -24,11 +24,10 @@ judgment settles what neither answers. Record every decision in the ledger as
 going. A wrong ruling costs rework your human partner can see and undo; a
 session parked on a question costs their whole day and buys nothing.
 
-Four things stop you, and only these: an irreversible or destructive
-operation; a security-sensitive action; a side effect outside this worktree
-that norms say you ask about first (a merge, a push to a shared branch, a
-publish); and a plan so broken that every path forward is a guess. For those,
-stop and ask.
+For missing authority, required evidence, consequential user choices, or an
+irreversible action outside current authorization, stop dependent work and report
+the specific gap. Continue independent authorized work. Resolve routine choices
+from project context; do not invent scope or silently exceed a bound.
 
 ## When to Use
 
@@ -77,7 +76,7 @@ digraph process {
     "Setup: worktree, ledger check, read plan, pre-flight review" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Final review and finish: read references/final-review.md" [shape=box];
-    "Final review clean: delete this plan's workspace" [shape=box];
+    "Retain evidence; clean only owned disposable artifacts when authorized" [shape=box];
     "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Setup: worktree, ledger check, read plan, pre-flight review" -> "Dispatch implementer subagent (./implementer-prompt.md)";
@@ -89,12 +88,12 @@ digraph process {
     "Generate review package, dispatch task reviewer (./task-reviewer-prompt.md)" -> "Spec ✅ and quality approved?";
     "Spec ✅ and quality approved?" -> "Append completion to ledger, mark todo complete" [label="yes"];
     "Spec ✅ and quality approved?" -> "Fix loop: read references/fix-loop.md before every round" [label="no"];
-    "Fix loop: read references/fix-loop.md before every round" -> "Append completion to ledger, mark todo complete" [label="addressed, or parked at the cap"];
+    "Fix loop: read references/fix-loop.md before every round" -> "Append completion to ledger, mark todo complete" [label="required findings resolved; deferrals disclosed"];
     "Append completion to ledger, mark todo complete" -> "More tasks remain?";
     "More tasks remain?" -> "Dispatch implementer subagent (./implementer-prompt.md)" [label="yes"];
     "More tasks remain?" -> "Final review and finish: read references/final-review.md" [label="no"];
-    "Final review and finish: read references/final-review.md" -> "Final review clean: delete this plan's workspace";
-    "Final review clean: delete this plan's workspace" -> "Use superpowers:finishing-a-development-branch";
+    "Final review and finish: read references/final-review.md" -> "Retain evidence; clean only owned disposable artifacts when authorized";
+    "Retain evidence; clean only owned disposable artifacts when authorized" -> "Use superpowers:finishing-a-development-branch";
 }
 ```
 
@@ -123,8 +122,8 @@ a ledger file, not only in todos.
 - The ledger is your recovery map: the commits it names exist in git even
   when your context no longer remembers creating them. After compaction,
   trust the ledger and `git log` over your own recollection.
-- `git clean -fdx` will destroy the workspace (it's git-ignored scratch); if
-  that happens, recover from `git log`.
+- `git clean -fdx` destroys ignored logs. Git history recovers committed code,
+  not missing raw evidence; preserve or mark that evidence unavailable.
 
 Read the plan once, note its context and Global Constraints, and create a
 todo per task. If the plan names a Spec, read that too: the spec is the
@@ -136,42 +135,19 @@ Before dispatching Task 1, read [references/preflight.md](references/preflight.m
 and run the conflict scan it describes. Its table and rulings go in the
 ledger.
 
-## Model Selection
+## Delegation and model selection
 
-Use the least powerful model that can handle each role to conserve cost and increase speed.
+Use this workflow when delegation is authorized and useful for the task. Follow
+host and user model-selection rules, including inherited defaults and explicit
+overrides. This skill grants no permission to change models, nest agents, or
+expand scope. When inline execution is chosen or delegation is unavailable, use
+`superpowers:executing-plans` with a separate review pass.
 
-**Mechanical implementation tasks** (isolated functions, clear specs, 1-2 files): use a fast, cheap model. Most implementation tasks are mechanical when the plan is well-specified.
-
-**Integration and judgment tasks** (multi-file coordination, pattern matching, debugging): use a standard model.
-
-**Architecture and design tasks**: use the most capable available model.
-The final whole-branch review is one of these — dispatch it on the most
-capable available model, not the session default.
-
-**Review tasks**: choose the model with the same judgment, scaled to the
-diff's size, complexity, and risk. A small mechanical diff does not need the
-most capable model; a subtle concurrency change does. Scoped re-reviews of
-small fix diffs take a cheap-to-mid tier.
-
-**Fix-loop escalation (rounds 4-5)**: use a model at least one tier above
-the implementer that got stuck.
-
-**Always specify the model explicitly when dispatching a subagent.** An
-omitted model inherits your session's model — often the most capable and
-most expensive — which silently defeats this section.
-
-**Turn count beats token price.** Wall-clock and context cost scale with how
-many turns a subagent takes, and the cheapest models routinely take 2-3× the
-turns on multi-step work — costing more overall. Use a mid-tier model as the
-floor for reviewers and for implementers working from prose descriptions.
-When the task's plan text contains the complete code to write, the
-implementation is transcription plus testing: use the cheapest tier for
-that implementer. Single-file mechanical fixes also take the cheapest tier.
-
-**Task complexity signals (implementation tasks):**
-- Touches 1-2 files with a complete spec → cheap model
-- Touches multiple files with integration concerns → standard model
-- Requires design judgment or broad codebase understanding → most capable model
+Retain bounded briefs and relevant context. Dispatch independent work only when
+shared files, worktrees, and authority will not conflict. A subagent report or
+ledger entry is not proof: inspect the actual diff, required results, and unrun
+checks before task completion. Use current project capture/evaluator owners for
+authoritative evidence; helper workspaces remain temporary aids.
 
 ## The Task Loop
 

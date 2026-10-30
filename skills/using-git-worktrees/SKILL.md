@@ -38,7 +38,9 @@ Report with branch state:
 
 **If `GIT_DIR == GIT_COMMON` (or in a submodule):** You are in a normal repo checkout.
 
-Has the user already indicated their worktree preference in your instructions? If not, ask for consent before creating a worktree:
+Use the current task and prior authorization to establish whether isolation is
+needed. Reuse existing Orca/native isolation. If a material placement or ownership
+choice remains unresolved, ask before creating a different workspace:
 
 > "Would you like me to set up an isolated worktree? It protects your current branch from changes."
 
@@ -83,7 +85,8 @@ Follow this priority order. Explicit user preference always beats observed files
 git check-ignore -q .worktrees 2>/dev/null || git check-ignore -q worktrees 2>/dev/null
 ```
 
-**If NOT ignored:** Add to .gitignore, commit the change, then proceed.
+**If NOT ignored:** use the project-approved ignored location or make the scoped
+ignore adjustment within authorization. A setup commit is not an automatic gate.
 
 **Why critical:** Prevents accidentally committing worktree contents to repository.
 
@@ -101,35 +104,16 @@ cd "$path"
 
 ## Step 2: Project Setup
 
-Auto-detect and run appropriate setup:
+Inspect project setup instructions and existing environment first. A manifest
+alone is not permission or a reason to install dependencies or run Cargo/build
+work. Run only setup needed by the authorized task and host policy.
 
-```bash
-# Node.js
-if [ -f package.json ]; then npm install; fi
+## Step 3: Establish the relevant baseline
 
-# Rust
-if [ -f Cargo.toml ]; then cargo build; fi
-
-# Python
-if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-if [ -f pyproject.toml ]; then poetry install; fi
-
-# Go
-if [ -f go.mod ]; then go mod download; fi
-```
-
-## Step 3: Verify Clean Baseline
-
-Run tests to ensure workspace starts clean:
-
-```bash
-# Use project-appropriate command
-npm test / cargo test / pytest / go test ./...
-```
-
-**If tests fail:** Report failures, ask whether to proceed or investigate.
-
-**If tests pass:** Report ready.
+Run the smallest required baseline under the task and project validation policy.
+Preserve actual failures and unrun checks. A focused pass establishes only its
+covered behavior; it does not prove the full repository is green. For a failure,
+investigate its relevance and ownership; continue independent authorized work.
 
 ### Report
 

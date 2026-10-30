@@ -17,19 +17,19 @@ Don't just state the rule - forbid specific workarounds:
 
 <Bad>
 ```markdown
-Write code before test? Delete it.
+Missing proof? Inspect the contract and establish the required evidence.
 ```
 </Bad>
 
 <Good>
 ```markdown
-Write code before test? Delete it. Start over.
+Missing proof? Inspect the contract and establish the required evidence.
 
 **No exceptions:**
 - Don't keep it as "reference"
 - Don't "adapt" it while writing tests
 - Don't look at it
-- Delete means delete
+- Required verification cannot be inferred from confidence
 ```
 </Good>
 
@@ -68,7 +68,7 @@ Make it easy for agents to self-check when rationalizing:
 - "It's about spirit not ritual"
 - "This is different because..."
 
-**All of these mean: Delete code. Start over with TDD.**
+**All of these mean: Inspect the required evidence and repair the missing proof.**
 ```
 
 ### Update SDO for Violation Symptoms

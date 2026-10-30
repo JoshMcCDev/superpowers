@@ -17,9 +17,9 @@ task. This skill keeps what those two things bought, by other means: the
 brief is the spec, the ledger is your memory, TDD is the per-task gate, and
 the final reviewer is the second pair of eyes.
 
-**Core principle:** The plan already did the thinking. Execute it exactly,
-prove each step with a test you watched fail and then pass, and leave a
-record that survives your own forgetting.
+**Core principle:** Execute the accepted plan within its current scope, resolve
+contradictions against project authority, and prove each changed contract at its
+owning layer. Preserve a recoverable record and explicit unrun evidence.
 
 **Narration:** between tool calls, narrate at most one short line — the
 ledger and the tool results carry the record.
@@ -36,11 +36,10 @@ as `Ruling: <what you decided> — <why> — <what it costs if wrong>`, and keep
 going. Deviating from the plan without a ledgered ruling is a decision made
 in secret.
 
-Four things stop you, and only these: an irreversible or destructive
-operation; a security-sensitive action; a side effect outside this worktree
-that norms say you ask about first (a merge, a push to a shared branch, a
-publish); and a plan so broken that every path forward is a guess. For
-those, stop and ask.
+For missing authority, required evidence, consequential user choices, or an
+irreversible action outside current authorization, stop dependent work and report
+the specific gap. Continue independent authorized work. Resolve routine choices
+from project context; do not invent scope or silently exceed a bound.
 
 ## When to Use
 
@@ -63,6 +62,13 @@ its later tasks would run on a compacted context. Inline execution over a
 long plan still works — the ledger is what makes it recoverable — but the
 last tasks get the least of you.
 
+## Project-owned records
+
+Use existing project capture, task, and evidence owners where they supply the
+needed recovery record. The helper workspace is a temporary working aid; do not
+copy authoritative evidence into a competing verdict/archive path. Preserve raw
+output and exact exits, and keep task/proof status explicit.
+
 ## The Process
 
 ```dot
@@ -83,8 +89,8 @@ digraph process {
     "Setup: worktree, workspace + ledger, read plan + spec, pre-flight scan" [shape=box];
     "More tasks remain?" [shape=diamond];
     "Final whole-branch review (fresh reviewer if you have one)" [shape=box];
-    "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger" [shape=box];
-    "Final review clean: delete this plan's workspace" [shape=box];
+    "Validate findings, repair supported defects, run affected checks; re-review when needed" [shape=box];
+    "Retain evidence; clean only owned disposable artifacts when authorized" [shape=box];
     "Use superpowers:finishing-a-development-branch" [shape=box style=filled fillcolor=lightgreen];
 
     "Setup: worktree, workspace + ledger, read plan + spec, pre-flight scan" -> "task-start: brief + BASE; read the brief";
@@ -99,9 +105,9 @@ digraph process {
     "task-done: run tests, ledger the result; mark todo complete" -> "More tasks remain?";
     "More tasks remain?" -> "task-start: brief + BASE; read the brief" [label="yes"];
     "More tasks remain?" -> "Final whole-branch review (fresh reviewer if you have one)" [label="no"];
-    "Final whole-branch review (fresh reviewer if you have one)" -> "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger";
-    "Re-grade, then: Critical/Important → ONE fix pass, each fix RED→GREEN + green suite; Minor → ledger" -> "Final review clean: delete this plan's workspace";
-    "Final review clean: delete this plan's workspace" -> "Use superpowers:finishing-a-development-branch";
+    "Final whole-branch review (fresh reviewer if you have one)" -> "Validate findings, repair supported defects, run affected checks; re-review when needed";
+    "Validate findings, repair supported defects, run affected checks; re-review when needed" -> "Retain evidence; clean only owned disposable artifacts when authorized";
+    "Retain evidence; clean only owned disposable artifacts when authorized" -> "Use superpowers:finishing-a-development-branch";
 }
 ```
 
@@ -130,15 +136,16 @@ and the new one resumes from the same ledger.
   directory is never yours to read or write.
 - Check for this plan's ledger at `<workspace>/progress.md`. If its first
   line names your plan file, tasks with a `Task <N>: complete` line are
-  DONE — do not redo them; resume at the first task without one. Their
+  recovery candidates: confirm the recorded revision and required evidence
+  before trusting completion; resume at the first incomplete task. Their
   commits exist in git even when your context no longer remembers making
   them: after compaction, trust the ledger and `git log` over your own
   recollection. A ledger whose first line names a different plan file is
   another plan's progress: leave it and start your own, fresh.
 - Create the ledger with its identity as the first line:
   `# SDD ledger — plan: <plan file path>`.
-- `git clean -fdx` will destroy the workspace (it's git-ignored scratch);
-  if that happens, recover from `git log`.
+- `git clean -fdx` destroys ignored logs. Git history can recover committed
+  code, not missing raw evidence; preserve or mark that evidence unavailable.
 
 Read the plan once, note its context and Global Constraints, and create a
 todo per task. If the plan names a Spec, read that too: the spec is the
@@ -228,8 +235,9 @@ if they pass — appends the completion line to the ledger:
 
 `Task <N>: complete (commits <base7>..<head7>, tests: <command> → <result>)`
 
-A failing run records nothing; the task is not complete. When it records,
-mark the todo complete and take the next task.
+A failing run records no completion. A successful command is only its own
+result: check the full task acceptance and required evidence before marking the
+task complete. A ledger is a working aid, not qualification authority.
 
 ## Final Review
 
@@ -237,56 +245,31 @@ Run `../subagent-driven-development/scripts/review-package PLAN_FILE MERGE_BASE 
 (MERGE_BASE = the commit the branch started from, e.g.
 `git merge-base main HEAD`) and review from the file it prints.
 
-**With a subagent tool:** dispatch the reviewer on the most capable
-available model — the whole-branch review is a judgment task — using
+**When delegation is authorized and useful:** dispatch a reviewer using the
+host/user-approved model policy and
 superpowers:requesting-code-review's
 [code-reviewer.md](../requesting-code-review/code-reviewer.md), with the
 package path, the plan and spec paths, the plan's Review Focus section
 verbatim if it has one (the input classes and failure modes the plan's
 tests do not exercise — the reviewer checks each deliberately), and a
 pointer to the ledger's `Ruling:` lines so it can weigh the calls you
-made. Specify the model
-explicitly; an omitted model inherits the session's, which may not be the
-most capable. This is the one fresh context the whole run buys. Do not
-skip it, and do not replace it with your own read of the diff.
+made. Apply the host's inherited model or explicitly requested override; this
+skill grants no model-selection authority. Scale review to the actual diff and
+required project checks.
 
-**Without a subagent tool:** read code-reviewer.md and perform that review
+**When delegation is unavailable or outside authorization:** read code-reviewer.md and perform that review
 yourself against the package, as a separate pass after the last task's
 ledger line. Write `Final review: self-review (no subagent tool)` to the
 ledger, and say so in your final message: a self-review by the author is
 weaker than a fresh reviewer, and your human partner decides whether that
 is enough before merge.
 
-Sort the findings before you act on any of them. The reviewer's severity
-labels are advice; the gate is yours. Its "Declined to judge" list is
-yours too: every line there is a ruling you make and ledger, exactly like
-a plan conflict — `Final: Ruling: <behavior the reviewer set aside> —
-<what a reasonable person using this software gets, and why that stands
-or why it is now a finding> — <cost if wrong>`. Re-grade first, by effect: the
-spec is a vision document, and a finding's grade is what a reasonable
-person using this software gets if it ships, not whether the spec names
-the input that triggers it — a reviewer who set a finding at Minor
-because the spec was silent has graded the spec, not the effect. Then:
-
-- **Critical and Important** enter the fix pass.
-- **Minor** goes to the ledger as `Final: minor (deferred): <one-liner>`
-  and to your final message under "Deferred minors". Minors never enter
-  the fix pass, and never become rulings — a ruling is a decision about a
-  conflict, not a note that you declined a polish suggestion.
-
-Fix the Critical and Important findings yourself — you are the
-implementer here — in ONE pass. Each fix is verified by TDD, not by a
-second reviewer: write the test that reproduces the finding, watch it
-fail, make it pass, then run the whole suite. Record each in the ledger as
-`Final: fixed <finding> — <test name> RED→GREEN, suite <N>/<N>`. A fix
-without a test that failed first is not verified; a suite that is not
-green after the pass means the pass is not over. Do not dispatch a
-re-review: it would re-read a diff whose covering tests already answer
-"addressed" and whose suite run already answers "broke nothing".
-
-A finding you decide not to fix is a ruling — `Final: Ruling: <finding> —
-<why the code stands> — <cost if wrong>` — and reaches your human partner
-in the rulings list. There is no second fix pass.
+Validate findings against accepted scope, current contracts, and the actual
+BASE/HEAD range. Fix supported defects at their owner; keep unrelated preferences
+as explicit follow-up. Use the smallest meaningful regression or runtime proof
+and affected checks. Re-review when new changes or unresolved risk warrant it;
+neither a fixed review-round count nor a green focused test decides all concerns.
+Record decisions, actual proof, and unrun checks in the existing project record.
 
 ## Finish
 
@@ -297,9 +280,9 @@ line under "Deferred minors". Both lists are exhaustive. Your final
 message is the only place the decisions you took on your human partner's
 behalf — and the findings you chose not to act on — reach them.
 
-When the final review is clean and its fixes are committed, delete this
-plan's workspace directory — the git history is the record now. Sibling
-directories belong to other plans; leave them alone.
+Retain raw evidence and any unique reports needed by the project. Remove only
+owned disposable workspace artifacts whose required contents are retained and
+whose cleanup is authorized. Git history alone does not retain ignored logs.
 
 Use superpowers:finishing-a-development-branch.
 
@@ -309,10 +292,10 @@ Use superpowers:finishing-a-development-branch.
 |--------|---------|
 | "I remember what Task N says" | You remember a summary. The brief has the exact values. Read it. |
 | "The plan's code is right, skip watching the test fail" | A test you never saw fail proves nothing. It is one step. Run it. |
-| "I'll run the full suite at the end instead of per step" | Per-step runs are how you learn which step broke it. The end-of-task run is the contract, not a substitute. |
+| "Focused GREEN proves everything" | Run the required affected checks and report their scope; preserve unrun criteria. |
 | "The plan is wrong here, I'll just do the right thing" | Do the right thing and ledger the ruling. Unledgered deviation is a decision made in secret. |
 | "I'll write the ledger lines after a few tasks" | Compaction does not wait for a convenient moment. One line per task, in the same message as the commit. |
-| "Let me check in before the next task" | They chose inline to spend less. Progress prompts spend their time instead. Only the four stops stop you. |
+| "Let me check in before the next task" | They chose inline to spend less. Progress prompts spend their time instead. Stop dependent work only for the specific authority, evidence, or consequential decision gap. |
 | "I read my own diff carefully; the final reviewer is redundant" | Same author, same blind spots. The reviewer is the only fresh context this run buys. |
 | "Tests should pass, the change was trivial" | "Should" is not evidence. The contract requires the command and its output. |
 | "Subagents are slow and expensive, I'll skip the final review too" | Inline already removed the per-task reviewers. One review of the whole branch is the floor, not the ceiling. |

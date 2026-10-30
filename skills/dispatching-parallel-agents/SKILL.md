@@ -13,6 +13,14 @@ When you have multiple unrelated failures (different test files, different subsy
 
 **Core principle:** Dispatch one agent per independent problem domain. Let them work concurrently.
 
+## Authority and shared state
+
+Delegate only within host/user authorization and model policy. Distinct task names
+do not establish independent work: inspect shared files, worktrees, process state,
+and authority owners first. Use bounded tasks and verify each returned change and
+its actual evidence before integrating; reports are advisory. If delegation is
+unavailable, investigate the independent questions inline.
+
 ## When to Use
 
 ```dot

@@ -80,7 +80,66 @@ echo "Test: non-matching pattern reports an honest zero"
 setup_project
 OUTPUT="$(run_polluter 'nomatch/**/*.test.ts')"
 assert_contains "$OUTPUT" "Found 0 test files" "empty result counts as 0, not 1"
-assert_contains "$OUTPUT" "No polluter found" "empty result exits via the clean path"
+assert_contains "$OUTPUT" "INCOMPLETE" "empty result is not certified clean"
+
+# Custom runner appends the candidate path as a single argument and retains failures.
+setup_project
+printf 'test' > "$PROJECT/src/file with spaces.test.ts"
+cat > "$PROJECT/bin/custom" <<'RUNNER'
+#!/usr/bin/env bash
+printf 'raw diagnostic for %s\n' "$1"
+[ -f "$1" ] || exit 9
+exit 7
+RUNNER
+chmod +x "$PROJECT/bin/custom"
+set +e
+OUTPUT="$(cd "$PROJECT" && "$SCRIPT_UNDER_TEST" pollution.marker 'src/*spaces*' -- "$PROJECT/bin/custom" 2>&1)"
+RC=$?
+set -e
+[ "$RC" -eq 7 ] && pass 'custom failure exit preserved' || fail 'custom failure exit preserved'
+assert_contains "$OUTPUT" 'INCOMPLETE' 'failed runner is not a clean result'
+assert_contains "$OUTPUT" 'raw diagnostic' 'raw output remains recoverable and visible'
+
+logs="$(printf '%s\n' "$OUTPUT" | sed -n 's/^Raw logs: //p')"
+[ -f "$logs/1.log" ] && grep -Fq 'raw diagnostic' "$logs/1.log" && pass 'raw log retained' || fail 'raw log retained'
+[ "$(cat "$logs/1.exit")" = 7 ] && pass 'raw exit retained' || fail 'raw exit retained'
+set +e
+OUTPUT="$(cd "$PROJECT" && "$SCRIPT_UNDER_TEST" pollution.marker 'no-matches' 2>&1)"
+RC=$?
+set -e
+[ "$RC" -eq 3 ] && pass 'no matches exits incomplete' || fail 'no matches exits incomplete'
+
+touch "$PROJECT/pollution.marker"
+set +e
+OUTPUT="$(cd "$PROJECT" && "$SCRIPT_UNDER_TEST" pollution.marker 'src/*.test.ts' 2>&1)"
+RC=$?
+set -e
+[ "$RC" -ne 0 ] && pass 'preexisting pollution rejects investigation' || fail 'preexisting pollution rejects investigation'
+assert_contains "$OUTPUT" 'INCOMPLETE' 'preexisting pollution has explicit status'
+
+rm "$PROJECT/pollution.marker"
+cat > "$PROJECT/bin/clean" <<'RUNNER'
+#!/usr/bin/env bash
+[ -f "$1" ]
+RUNNER
+chmod +x "$PROJECT/bin/clean"
+OUTPUT="$(cd "$PROJECT" && "$SCRIPT_UNDER_TEST" pollution.marker 'src/*spaces*' -- "$PROJECT/bin/clean" 2>&1)"
+assert_contains "$OUTPUT" 'No polluter found' 'clean custom runner completes'
+
+# A partial discovery must not establish a clean result.
+cat > "$PROJECT/bin/find" <<'DISCOVERY'
+#!/usr/bin/env bash
+printf './src/top.test.ts\0'
+echo 'fixture traversal failure' >&2
+exit 1
+DISCOVERY
+chmod +x "$PROJECT/bin/find"
+set +e
+OUTPUT="$(cd "$PROJECT" && PATH="$PROJECT/bin:$PATH" "$SCRIPT_UNDER_TEST" pollution.marker 'src/*.test.ts' -- "$PROJECT/bin/clean" 2>&1)"
+RC=$?
+set -e
+[ "$RC" -eq 2 ] && pass 'partial discovery exits incomplete' || fail 'partial discovery exits incomplete'
+assert_contains "$OUTPUT" 'candidate discovery failed' 'discovery error prevents clean claim'
 
 echo ""
 if [ "$FAILURES" -gt 0 ]; then

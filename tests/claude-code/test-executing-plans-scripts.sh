@@ -154,6 +154,21 @@ PLAN
         echo "    ledger:"; sed 's/^/      /' "$ledger" 2>/dev/null || echo "      (missing)"
     fi
 
+    # Some host packagers strip executable bits from bundled helpers.
+    local packaged="$TEST_ROOT/packaged/skills"
+    mkdir -p "$packaged/executing-plans" "$packaged/subagent-driven-development"
+    cp -R "$EP_SCRIPTS" "$packaged/executing-plans/scripts"
+    cp -R "$REPO_ROOT/skills/subagent-driven-development/scripts" "$packaged/subagent-driven-development/scripts"
+    chmod -x "$packaged/subagent-driven-development/scripts/sdd-workspace"
+    rc=0
+    out="$(cd "$repo" && bash "$packaged/executing-plans/scripts/task-done" plan.md 3 "$head2" -- true 2>&1)" || rc=$?
+    if [[ "$rc" -eq 0 ]] && grep -qF 'Task 3: complete' "$ledger"; then
+        pass "task-done works when packaged sdd-workspace loses its executable bit"
+    else
+        fail "task-done works when packaged sdd-workspace loses its executable bit (got rc=$rc)"
+        echo "    got: $out"
+    fi
+
     echo
     if [[ "$FAILURES" -eq 0 ]]; then
         echo "PASS"

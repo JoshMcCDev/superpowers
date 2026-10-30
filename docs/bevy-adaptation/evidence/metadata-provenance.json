@@ -1,0 +1,77 @@
+[
+  {
+    "skill": "dispatching-parallel-agents",
+    "origin": "existing official plugin source metadata",
+    "sha256": "55e5cdae31b34dcafb3cdeb7ca6e154ad3a1ab56da7e6b0d4cc8e1e098ecb5da"
+  },
+  {
+    "skill": "writing-skills",
+    "origin": "existing official plugin source metadata",
+    "sha256": "c4fafd8a5f3d60328fbf000562dce12d99ec0f25dd016fc0d362ecce9fc02042"
+  },
+  {
+    "skill": "using-git-worktrees",
+    "origin": "existing official plugin source metadata",
+    "sha256": "00bb3e4d6f3448a0c406d3bffc714d5ed597248514646c2f13ef532b93041773"
+  },
+  {
+    "skill": "receiving-code-review",
+    "origin": "existing official plugin source metadata",
+    "sha256": "f5515fdf668d22fffc4fd367f990318b2c1ba1a73d9b3ba5661c40e02deedfbc"
+  },
+  {
+    "skill": "systematic-debugging",
+    "origin": "existing official plugin source metadata",
+    "sha256": "a1ec2b63eb6ac4f79bdea5e0ac4dd9688ead473dbc0ff8aa791f9142778b5386"
+  },
+  {
+    "skill": "subagent-driven-development",
+    "origin": "existing official plugin source metadata",
+    "sha256": "58ef494a996998f2a486a0764b769bdf02e9c148b050b38603dbcdb364ae2771"
+  },
+  {
+    "skill": "writing-plans",
+    "origin": "existing official plugin source metadata",
+    "sha256": "de6a2f3d9de78d9c5027512ab1abab998f9acbef70960ecdbad525f4dce2e1bb"
+  },
+  {
+    "skill": "brainstorming",
+    "origin": "existing official plugin source metadata",
+    "sha256": "90585d2a09289aaff7eba1271596e8500c7328437b94839f2d39699a41689195"
+  },
+  {
+    "skill": "diagnosing-superpowers",
+    "origin": "local reviewed metadata for existing skill",
+    "sha256": "24f8e3bf4cea713ccf4be79829bf4701232d3472b3557717f1672c560aac333e"
+  },
+  {
+    "skill": "executing-plans",
+    "origin": "existing official plugin source metadata",
+    "sha256": "c9884a11c9c4721b838ad0b526590efdf677065fb20af0ac3b2bd2ea55cf8786"
+  },
+  {
+    "skill": "test-driven-development",
+    "origin": "existing official plugin source metadata",
+    "sha256": "d1fd223b137ce6eca628d521031213a2dc002a97865f00e2f6fce03529b9ca05"
+  },
+  {
+    "skill": "requesting-code-review",
+    "origin": "existing official plugin source metadata",
+    "sha256": "1917e3cf2c957e7512343e622b002a873f325fbf931bed77d71afb5a02ca431d"
+  },
+  {
+    "skill": "finishing-a-development-branch",
+    "origin": "existing official plugin source metadata",
+    "sha256": "74ab618a66f23e8e29015f4ab14db2dd0f639e98c6fdc25fb912fb6a82ed593d"
+  },
+  {
+    "skill": "using-superpowers",
+    "origin": "existing official plugin source metadata",
+    "sha256": "3c5813a85ca812acc399c3081ab73699dce4740b068ab0be73710a58465bfeaa"
+  },
+  {
+    "skill": "verification-before-completion",
+    "origin": "existing official plugin source metadata",
+    "sha256": "0eaad1a982ab8c95d8b938f1567f207dbc6fd9d172707b1e268e0cc8ab999705"
+  }
+]

@@ -160,26 +160,18 @@ When: Reference material too large for inline
 
 Invoke bundled scripts through their interpreter in the prose (`bash scripts/tool.sh`, `node scripts/tool.js`), never by bare path: some harness plugin packagers strip executable bits, and a bare `scripts/tool.sh` fails there with `Permission denied`.
 
-## The Iron Law (Same as TDD)
+## Scope, ownership, and validation
 
-```
-NO SKILL WITHOUT A FAILING TEST FIRST
-```
+Keep a skill's decision-changing guidance with one maintained owner. Use on-demand
+references for independently needed detail; keep project contracts and transient
+run status out of general skills. Check frontmatter, host-compatible commands,
+relative paths, bundled script availability, and actual packaged content.
 
-This applies to NEW skills AND EDITS to existing skills.
-
-Write skill before testing? Delete it. Start over.
-Edit skill without testing? Same violation.
-
-**No exceptions:**
-- Not for "simple additions"
-- Not for "just adding a section"
-- Not for "documentation updates"
-- Don't keep untested changes as "reference"
-- Don't "adapt" while running tests
-- Delete means delete
-
-**REQUIRED BACKGROUND:** The superpowers:test-driven-development skill explains why this matters. Same principles apply to documentation.
+Behavior-shaping edits need baseline and candidate observations under realistic
+pressure, including repeated samples. A link/path-only repair uses deterministic
+link and routing checks; do not fabricate a behavioral RED or discard valid work.
+Missing behavior evidence stays explicit. No evaluation result grants mutation,
+publication, or installation authority.
 
 ## Testing All Skill Types
 
@@ -382,7 +374,7 @@ Deploying untested skills = deploying untested code. It's a violation of quality
 - [ ] Supporting files only for tools or heavy reference
 
 **Deployment:**
-- [ ] Commit skill to git and push to your fork (if configured)
+- [ ] Review the diff and verification evidence; commit or push only within the authorized workflow
 - [ ] Consider contributing back via PR (if broadly useful)
 
 ## Discovery Workflow

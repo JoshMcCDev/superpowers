@@ -1,6 +1,6 @@
 ---
 name: brainstorming
-description: "You MUST use this before any creative work - creating features, building components, adding functionality, modifying behavior, or planning anything new, in software or out of it (a talk, a business, a renovation)."
+description: Use when consequential requirements, design choices, or user intent remain unresolved before planning creative or implementation work.
 ---
 
 # Brainstorming
@@ -23,17 +23,12 @@ why?
   blue"). This is a quick, clear task. Do it, and say what you did.
 - **Something non-trivial is missing.** Start the conversation.
 
-Before you start implementing, you must, in order:
-
-1. Lay out the approaches in a message of their own, and have your
-   human partner pick one (see Lay out the approaches).
-2. Write the design doc, short or full (see Size the Work).
-3. Get their approval of that doc.
-4. Invoke the superpowers:writing-plans skill.
-
-Two things aren't implementing: a spike they said yes to (see Spike to
-feel things out), and doing what they asked once they've opted out of
-the questions.
+For unresolved consequential choices, explore the context, compare approaches,
+and get the missing decision before dependent implementation. Write a design
+when its complexity or project policy warrants one. Respect decisions and
+implementation authorization already provided in the current task. A clear,
+bounded correction can proceed without a separate design-document approval.
+Use `superpowers:writing-plans` when a multi-step plan will help execution.
 
 ## Look Before You Ask
 
@@ -222,10 +217,14 @@ or two each and goes straight to your human partner, without the
 builder check.
 
 **Where it goes:** in a software repo,
-`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md`, committed.
+use the project documentation policy. A proposed design and accepted contract
+may have different owners. Without project guidance,
+`docs/superpowers/specs/YYYY-MM-DD-<topic>-design.md` is a possible location;
+commit only within the authorized workflow.
 Otherwise, ask. Your human partner's preferences override both.
 
-**Builder check** (for a project): dispatch a fresh subagent with
+**Builder check** (for a substantial project): when delegation is authorized,
+dispatch a fresh subagent with
 `builder-check-prompt.md` in this directory. When you tell your human
 partner you're writing it up, say a reviewer will read it first and you
 may come back once with a few questions. Don't hand over the document
@@ -244,32 +243,27 @@ calls you made so they can check those while reading. That's the only
 round of questions the check produces. Without a subagent tool, read the
 document as that builder yourself.
 
-<HARD-GATE>
-Nothing gets built until your human partner approves the design doc:
-the short one for a small change, the full one for a project.
-Building includes writing product code, scaffolding, installing
-dependencies, creating projects, and invoking an implementation skill.
-Reading and exploring are fine.
+## Resolve decisions before dependent work
 
-Two exceptions. If they opted out of the questions, the skill is done
-and the gate goes with it. A spike they said yes to may be built; it
-stays labeled throwaway, and keeping what it produced is a new request
-that comes back through this gate.
+Pause dependent implementation when required scope, authority, or a consequential
+user choice is missing. Continue independent investigation and preparation. Use
+prior accepted decisions and current authorization without adding another approval
+round. A design review is valuable when the project or user requires it; it is
+not a universal gate for routine edits. Keep approved spikes bounded to their
+purpose and distinguish exploration from accepted production proof.
 
-After the design doc is approved, the next step is the plan: invoke
-superpowers:writing-plans and no other skill.
-</HARD-GATE>
+
 
 ## Red Flags
 
 | Thought | Reality |
 |---------|---------|
 | "I'll offer a menu of what they might want" | Options steer. Ask them to describe it first. |
-| "I'll fill in sensible defaults" | Good. Say them out loud. A default they never heard is one they couldn't reject. |
+| "I'll fill in sensible defaults" | Resolve routine choices from project context; surface material assumptions that affect the result. |
 | "I've answered their questions, so I'll write the doc" | Lay out the approaches first, in a message of their own. |
 | "I should explain the process first" | Ask your question. The process shows itself. |
-| "They said 'sounds good' to the idea" | Approval covers what you showed them. A design doc you haven't written isn't approved. |
-| "The spike works, I'll keep building on it" | Keeping it is a new request. Back through the gate. |
+| "They approved this direction" | Reuse the actual accepted scope; ask only for a consequential decision still missing. |
+| "The spike works, I'll keep building on it" | Check the accepted production scope and required proof before expanding exploration. |
 
 ## Visual Companion
 

@@ -30,15 +30,13 @@ Subagent (general-purpose):
     git diff [BASE_SHA]..[HEAD_SHA]
     ```
 
-    ## The spec is a vision document
+    ## Accepted scope and evidence
 
-    The spec says what the software must do. It does not enumerate every
-    input, environment, or condition the software will meet. For behavior
-    the spec is silent on, judge by what a reasonable person using this
-    software would expect: a reasonable person's expectation is a
-    requirement, and a spec's silence is not permission. Grade such
-    findings by their effect on that person, not by whether the spec
-    mentions the trigger.
+    Judge the requested change against accepted requirements, current project
+    contracts, and ordinary correctness of touched behavior. A review preference
+    is not new scope. Distinguish a supported defect from a maintainability-only
+    follow-up. Verify current BASE/HEAD, exact results, and missing evidence;
+    model confidence and reports do not establish runtime qualification.
 
     ## Declined to judge
 
