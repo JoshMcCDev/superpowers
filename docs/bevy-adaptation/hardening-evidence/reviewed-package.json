@@ -1,0 +1,9 @@
+{
+  "source_commit": "5a9baf99f00be4e9fc17149e4a8c519e032416ba",
+  "source_remote": "https://github.com/JoshMcCDev/superpowers",
+  "version": "7.0.1-bevy.2",
+  "archive_sha256": "4094050869e3d841f54eba5938b6b8d6475a9ee837c83ade2483a4dc3b711065",
+  "bytes": 267754,
+  "source_clone": "remote-clean",
+  "metadata": "same pinned source; no override"
+}

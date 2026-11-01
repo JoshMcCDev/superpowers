@@ -1,0 +1,22 @@
+Test: documented pattern finds nested test files (issue #2008)
+  [PASS] documented pattern runs tests and detects pollution
+Test: documented pattern also finds top-level test files
+  [PASS] src/**/*.test.ts matches src/top.test.ts and src/feature/nested.test.ts
+Test: ./-prefixed pattern matches the same files
+  [PASS] leading ./ on the pattern is accepted
+Test: non-matching pattern reports an honest zero
+  [PASS] empty result counts as 0, not 1
+  [PASS] empty result is not certified clean
+  [PASS] custom failure exit preserved
+  [PASS] failed runner is not a clean result
+  [PASS] raw output remains recoverable and visible
+  [PASS] raw log retained
+  [PASS] raw exit retained
+  [PASS] no matches exits incomplete
+  [PASS] preexisting pollution rejects investigation
+  [PASS] preexisting pollution has explicit status
+  [PASS] clean custom runner completes
+  [PASS] partial discovery exits incomplete
+  [PASS] discovery error prevents clean claim
+
+All tests passed

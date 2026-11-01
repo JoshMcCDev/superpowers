@@ -1,0 +1,1 @@
+/tmp/tmp.ARONJFDf9g/pkg/skills/executing-plans/scripts/task-start: line 23: /tmp/tmp.ARONJFDf9g/pkg/skills/subagent-driven-development/scripts/task-brief: Permission denied

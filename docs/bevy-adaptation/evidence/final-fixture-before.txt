@@ -1,0 +1,13 @@
+F
+======================================================================
+FAIL: test_increment (test_calc.CalcTest.test_increment)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/superpowers-adaptation-evidence/final-fixture/test_calc.py", line 5, in test_increment
+    self.assertEqual(increment(4), 5)
+AssertionError: 3 != 5
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (failures=1)

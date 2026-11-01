@@ -13,6 +13,14 @@ When you have multiple unrelated failures (different test files, different subsy
 
 **Core principle:** Dispatch one agent per independent problem domain. Let them work concurrently.
 
+## Authority and shared state
+
+Delegate only within host/user authorization and model policy. Distinct task names
+do not establish independent work: inspect shared files, worktrees, process state,
+and authority owners first. Use bounded tasks and verify each returned change and
+its actual evidence before integrating; reports are advisory. If delegation is
+unavailable, investigate the independent questions inline.
+
 ## When to Use
 
 ```dot
@@ -163,5 +171,5 @@ Agent 3 → Fix tool-approval-race-conditions.test.ts
 After agents return:
 1. **Review each summary** - Understand what changed
 2. **Check for conflicts** - Did agents edit same code?
-3. **Run full suite** - Verify all fixes work together
+3. **Run affected integration checks** - Use required project proof for the shared boundaries; report unrun broader criteria
 4. **Spot check** - Agents can make systematic errors

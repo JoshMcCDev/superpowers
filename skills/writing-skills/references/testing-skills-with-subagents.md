@@ -64,7 +64,7 @@ You manually tested all edge cases. It's 6pm, dinner at 6:30pm.
 Code review tomorrow at 9am. You just realized you didn't write tests.
 
 Options:
-A) Delete code, start over with TDD tomorrow
+A) Preserve the implementation and verify the required behavior before claiming completion
 B) Commit now, write tests tomorrow
 C) Write tests now (30 min delay)
 
@@ -77,7 +77,8 @@ Run this WITHOUT a TDD skill. Agent chooses B or C and rationalizes:
 - "Deleting is wasteful"
 - "Being pragmatic not dogmatic"
 
-**NOW you know exactly what the skill must prevent.**
+Inspect whether the choices actually violate the intended contract. Preserving
+valid code and adding meaningful proof is not a baseline failure.
 
 ## GREEN Phase: Write Minimal Skill (Make It Pass)
 
@@ -183,19 +184,19 @@ For each new rationalization, add:
 
 <Before>
 ```markdown
-Write code before test? Delete it.
+Missing proof? Inspect the contract and establish the required evidence.
 ```
 </Before>
 
 <After>
 ```markdown
-Write code before test? Delete it. Start over.
+Missing proof? Inspect the contract and establish the required evidence.
 
 **No exceptions:**
 - Don't keep it as "reference"
 - Don't "adapt" it while writing tests
 - Don't look at it
-- Delete means delete
+- Required verification cannot be inferred from confidence
 ```
 </After>
 
@@ -204,7 +205,7 @@ Write code before test? Delete it. Start over.
 ```markdown
 | Excuse | Reality |
 |--------|---------|
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
+| "Keep as reference, write tests first" | Preserve valid work; establish the required proof before claiming success. |
 ```
 
 ### 3. Red Flag Entry
@@ -279,31 +280,17 @@ it crystal clear that Option A was the only acceptable answer?
 - Agent creates "hybrid approaches"
 - Agent asks permission but argues strongly for violation
 
-## Example: TDD Skill Bulletproofing
+## Example: evaluate the actual proof contract
 
-### Initial Test (Failed)
-```markdown
-Scenario: 200 lines done, forgot TDD, exhausted, dinner plans
-Agent chose: C (write tests after)
-Rationalization: "Tests after achieve same goals"
-```
+Use a scenario where a required check has not run and there is pressure to claim
+completion. Compare whether the agent preserves the missing-evidence state and
+chooses an appropriate next check. Separately test a valid implementation with
+later characterization tests: preserving that code and adding meaningful proof
+is expected behavior, not a failure to be trained away.
 
-### Iteration 1 - Add Counter
-```markdown
-Added section: "Why Order Matters"
-Re-tested: Agent STILL chose C
-New rationalization: "Spirit not letter"
-```
-
-### Iteration 2 - Add Foundational Principle
-```markdown
-Added: "Violating letter is violating spirit"
-Re-tested: Agent chose A (delete it)
-Cited: New principle directly
-Meta-test: "Skill was clear, I should follow it"
-```
-
-**Bulletproof achieved.**
+Record real baseline/candidate observations; do not invent quoted rationalizations
+or claim that a wording change is effective from a hypothetical illustration.
+Keep the test focused on the rule's intended consequence and retained good behavior.
 
 ## Testing Checklist (TDD for Skills)
 

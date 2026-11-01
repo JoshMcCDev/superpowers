@@ -19,6 +19,19 @@ NO COMPLETION CLAIMS WITHOUT FRESH VERIFICATION EVIDENCE
 
 If you haven't run the verification command in this message, you cannot claim it passes.
 
+## Match evidence to the claim
+
+Choose the smallest authoritative proof layer under the active task and project
+validation policy. A focused test proves its covered contract; it does not prove
+unexecuted runtime, protected-workload, or qualification criteria. Model estimates,
+typed judgments, reviewer confidence, and agent reports are advisory until checked
+against the required evidence.
+
+Keep missing evidence explicit: `NOT_RUN` for an unexecuted check, `UNKNOWN` for
+an unavailable fact, and `UNPROVEN` for an unsupported claim. A debugger pause,
+trace, or recording can change timing; use it to investigate, then validate a
+deadline-sensitive claim under the project's normal execution conditions.
+
 ## The Gate Function
 
 ```
@@ -46,6 +59,7 @@ Skip any step = lying, not verifying
 | Regression test works | Red-green cycle verified | Test passes once |
 | Agent completed | VCS diff shows changes | Agent reports "success" |
 | Requirements met | Line-by-line checklist | Tests passing |
+| Runtime qualification | Required fresh project/runtime evidence | Focused tests, diagnostic runs, or model confidence |
 
 ## Red Flags - STOP
 
@@ -68,7 +82,7 @@ Skip any step = lying, not verifying
 | "Linter passed" | Linter ≠ compiler |
 | "Agent said success" | Verify independently |
 | "I'm tired" | Exhaustion ≠ excuse |
-| "Partial check is enough" | Partial proves nothing |
+| "Focused GREEN proves everything" | It proves only the covered claim; unmet acceptance stays incomplete |
 | "Different words so rule doesn't apply" | Spirit over letter |
 
 ## Key Patterns

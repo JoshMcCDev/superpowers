@@ -1,53 +1,35 @@
 ---
 name: using-superpowers
-description: Use when starting any conversation - establishes how to find and use skills, requiring skill invocation before ANY response including clarifying questions
+description: Use when selecting relevant Superpowers skills for a task or resolving how their workflows interact with current project and host instructions.
 ---
 
-<SUBAGENT-STOP>
-If you were dispatched as a subagent to execute a specific task, ignore this skill.
-</SUBAGENT-STOP>
+# Using Superpowers
 
-<EXTREMELY-IMPORTANT>
-If you think there is even a 1% chance a skill might apply to what you are doing, you ABSOLUTELY MUST invoke the skill.
+For a bounded subagent assignment, follow the supplied task and relevant skills;
+do not restart the parent conversation's discovery process.
 
-IF A SKILL APPLIES TO YOUR TASK, YOU DO NOT HAVE A CHOICE. YOU MUST USE IT.
+## Select the smallest useful skill
 
-This is not negotiable. You cannot rationalize your way out of this.
-</EXTREMELY-IMPORTANT>
+Read explicitly requested skills. Otherwise select a skill when its trigger fits
+and its guidance can change the next decision. Use the current version already
+loaded in the session; do not reread unchanged content or preload every skill and
+reference. Ordinary source inspection can establish which owner or skill applies.
 
-## The Rule
+- Unexplained failure: systematic debugging, then the relevant domain guidance.
+- Unclear consequential design: brainstorming before settling the implementation.
+- Clear multi-step implementation: writing plans when a plan will help execution.
+- Completion claim: verification-before-completion and the project's proof policy.
 
-**Invoke relevant or requested skills BEFORE any response or action** — including clarifying questions, exploring the codebase, or checking files. If it turns out wrong for the situation, you don't have to use it.
+Announce applicable skill use briefly. Treat checklists as scoped working aids,
+not permission to expand the task or create unrelated artifacts.
 
-**Before entering plan mode:** if you haven't already brainstormed, invoke the brainstorming skill first.
+## Instruction and authority boundaries
 
-Then announce "Using [skill] to [purpose]" and follow the skill exactly. If it has a checklist, create a todo per item.
-
-## Skill Priority
-
-When multiple skills apply, process skills come first — they set the approach, then implementation skills (frontend-design, etc.) carry it out. Brainstorming and systematic-debugging are Superpowers' most common process skills, but the rule holds for any of them.
-
-- "Let's build X" → superpowers:brainstorming first, then implementation skills.
-- "Fix this bug" → superpowers:systematic-debugging first, then domain skills.
-
-## Red Flags
-
-These thoughts mean STOP—you're rationalizing:
-
-| Thought | Reality |
-|---------|---------|
-| "This is just a simple question" | Questions are tasks. Check for skills. |
-| "I need more context first" | Skill check comes BEFORE clarifying questions. |
-| "Let me explore the codebase first" | Skills tell you HOW to explore. Check first. |
-| "I can check git/files quickly" | Files lack conversation context. Check for skills. |
-| "Let me gather information first" | Skills tell you HOW to gather information. |
-| "This doesn't need a formal skill" | If a skill exists, use it. |
-| "I remember this skill" | Skills evolve. Read current version. |
-| "This doesn't count as a task" | Action = task. Check for skills. |
-| "The skill is overkill" | Simple things become complex. Use it. |
-| "I'll just do this one thing first" | Check BEFORE doing anything. |
-| "This feels productive" | Undisciplined action wastes time. Skills prevent this. |
-| "I know what that means" | Knowing the concept ≠ using the skill. Invoke it. |
+The active task, applicable user/project instructions, and host permissions govern
+scope and authority. Skills supply reusable mechanics. Use project-specific proof,
+validation, placement, and worktree owners where they apply; do not replace them
+with a generic workflow or reinterpret missing evidence as success. A loaded skill
+does not authorize delegation, model changes, installation, commits, or publication.
 
 ## Platform Adaptation
 
@@ -60,6 +42,7 @@ If your harness appears here, read its reference file for special instructions:
 - Hermes Agent: `references/hermes-tools.md`
 - Muse: `references/muse-tools.md`
 
-## User Instructions
-
-User instructions (CLAUDE.md, AGENTS.md, GEMINI.md, etc, direct requests) take precedence over skills, which in turn override default behavior. Only skip skill workflows or instructions when your human partner has explicitly told you to.
+When an optional capability affects the next decision, read
+[tool discovery and evidence](references/tool-discovery-and-evidence.md).
+For nontrivial reuse choices, planning owns the bounded reuse record; tool
+availability is not dependency approval.

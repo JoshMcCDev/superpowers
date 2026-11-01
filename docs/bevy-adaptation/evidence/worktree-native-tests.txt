@@ -1,0 +1,6 @@
+=== Worktree Native Preference Test ===
+
+--- RED PHASE: Running WITHOUT Step 1a (current skill) ---
+Expected: Agent uses 'git worktree add' (no native tool awareness)
+
+timeout: failed to run command ‘claude’: No such file or directory

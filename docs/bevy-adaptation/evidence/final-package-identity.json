@@ -1,0 +1,19 @@
+{
+  "source_ref": "refs/bevy-adaptation/package-source",
+  "source_commit": "91394b2d14f23353b8417f64b6bdf1f692b6fd56",
+  "bytes": 266586,
+  "sha256": "8e017c68169dbd11a1eaf4e0126d1fbf01fa71df3f2015b89effc17ed4b4831e",
+  "command": [
+    "bash",
+    "scripts/package-codex-plugin.sh",
+    "--ref",
+    "91394b2d14f23353b8417f64b6bdf1f692b6fd56",
+    "--allow-dirty",
+    "--metadata-source",
+    "/tmp/superpowers-adaptation-evidence/metadata",
+    "--output",
+    "/tmp/superpowers-adaptation-evidence/superpowers-7.0.1-bevy.1-final.zip"
+  ],
+  "metadata_provenance": "metadata-provenance.json",
+  "byte_compared_files": 93
+}

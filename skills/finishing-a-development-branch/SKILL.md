@@ -1,6 +1,6 @@
 ---
 name: finishing-a-development-branch
-description: Use when implementation is complete, all tests pass, and you need to decide how to integrate the work
+description: Use when the requested implementation and relevant verification are ready for authorized branch integration or closeout
 ---
 
 # Finishing a Development Branch
@@ -13,17 +13,10 @@ description: Use when implementation is complete, all tests pass, and you need t
 
 ## Step 1: Verify Tests
 
-Run the project's full test suite (`npm test` / `cargo test` / `pytest` / `go test ./...`).
-
-**If tests fail**, report the failures and stop — the menu comes after a green suite:
-
-```
-Tests failing (<N> failures). Must fix before completing:
-
-[Show failures]
-```
-
-**If tests pass:** continue to Step 2.
+Run the required affected checks under the task and project validation policy.
+Report actual failures, required missing evidence, and unrun broader checks. Do
+not equate a focused pass with a green suite or qualification. Resolve required
+failures before claiming readiness; keep unrelated failure analysis scoped.
 
 ## Step 2: Detect Environment
 
@@ -52,7 +45,8 @@ Confirm before merging: merging into the wrong base is expensive to undo.
 
 ## Step 4: Present Options
 
-**Normal repo and named-branch worktree — present exactly these 3 options:**
+**For normal repos and named branches, use the already-authorized project
+closeout workflow. If the next material action is unresolved, offer relevant options:**
 
 ```
 Implementation complete. What would you like to do?
@@ -166,8 +160,9 @@ Step 2, from before that directory change.
 
 **If `GIT_DIR == GIT_COMMON`:** Normal repo, no worktree to clean up. Done.
 
-**If `WORKTREE_PATH` is under `.worktrees/` or `worktrees/`:** Superpowers
-created this worktree — we own cleanup:
+**For a worktree whose creation and cleanup ownership are recorded as ours:**
+verify authorization and retained files before removal. Directory spelling alone
+does not establish ownership. Orca/native-managed workspaces use their host owner:
 
 ```bash
 git worktree remove "$WORKTREE_PATH"
@@ -218,7 +213,7 @@ place. If your platform provides a workspace-exit tool, use it.
 | "They seem done with this feature — I'll offer to discard it" | The menu is complete as written. Discard happens only when your human partner asks for it in so many words. |
 | "'Yeah, get rid of it' counts as confirmation" | Only the typed word `discard` authorizes deletion. |
 | "The PR is up, so the worktree is clutter now" | PR feedback gets fixed in that worktree. It stays until the work lands. |
-| "This other worktree looks stale — I'll clean it too" | Clean up only worktrees under `.worktrees/` or `worktrees/`. Everything else belongs to the host. |
+| "This other worktree looks stale — I'll clean it too" | Verify creation/cleanup ownership and authorization; preserve host-managed worktrees and their uncommitted files. |
 | "Removal refused — `--force` is just finishing the cleanup" | The refusal means files exist only in that worktree. `--force` destroys them permanently. Show your human partner and ask. |
 | "The merged-result failure is probably flaky" | A failing merged result stops everything. Branch and worktree stay put while you investigate. |
 | "The base branch is obviously main" | Confirm the fork point or ask. Merging into the wrong base is expensive to undo. |

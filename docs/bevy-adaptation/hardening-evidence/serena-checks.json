@@ -1,0 +1,20 @@
+[
+  {
+    "command": [
+      "serena",
+      "memories",
+      "check"
+    ],
+    "exit": 2,
+    "log": "serena-memory-check.log"
+  },
+  {
+    "command": [
+      "serena",
+      "print-system-prompt",
+      "/home/josh/orca/workspaces/bevy-dev-loop/skill-guidance-hardening"
+    ],
+    "exit": 0,
+    "log": "serena-resolved-prompt.log"
+  }
+]

@@ -2,6 +2,14 @@
 
 Superpowers is a complete software development methodology for your coding agents, built on top of a set of composable skills and some initial instructions that make sure your agent uses them.
 
+## Fork adaptation
+
+This fork is adapting the existing Superpowers workflows for project-owned proof,
+scoped validation, and Bevy Dev Loop development. See
+source repository notes in `docs/bevy-adaptation/README.md` for the changes, evaluation
+identities, retained capabilities, and current validation limits. Upstream MIT
+licensing and attribution remain intact.
+
 ## Table of Contents
 
 - [How it works](#how-it-works)
@@ -398,3 +406,7 @@ MIT License - see LICENSE file for details
 ## Visual companion telemetry
 
 Because skills and plugins don't provide any feedback to creators, we have no idea how many of you are using Superpowers. By default, the Prime Radiant logo on brainstorming's optional visual companion feature is loaded from our website. It includes the version of Superpowers in use. It does not include any details about your project, prompt, or coding agent. We don't see your clicks or anything about what you're building. This helps us have a rough idea of how many folks are using Superpowers and which version of Superpowers they're using. It's 100% optional. To disable this, set the environment variable `SUPERPOWERS_DISABLE_TELEMETRY` to any true value. Superpowers also honors Claude Code's `DISABLE_TELEMETRY` and `CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC` opt-outs.
+
+For this fork's pinned Codex package, follow
+[the fork installation and verification guide](https://github.com/JoshMcCDev/superpowers/blob/feat/bevy-dev-loop-integration/docs/codex-fork-install.md).
+Upstream installation instructions above select upstream releases, not this fork.

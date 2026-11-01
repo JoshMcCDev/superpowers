@@ -13,36 +13,22 @@ Write the test first. Watch it fail. Write minimal code to pass.
 
 **Violating the letter of the rules is violating the spirit of the rules.**
 
-## When to Use
+## Choose the proving layer
 
-**Always:**
-- New features
-- Bug fixes
-- Refactoring
-- Behavior changes
+Prefer a regression-first RED/GREEN cycle for reproducible defects and clear
+deterministic behavior changes. The active task and project validation policy
+choose the authoritative layer: pure logic tests, Bevy World/App checks, process
+or BRP integration, or structured runtime proof as appropriate.
 
-**Exceptions (ask your human partner):**
-- Throwaway prototypes
-- Generated code
-- Configuration files
+For behavior-preserving refactors, establish characterization coverage, refactor,
+and keep it green. For documentation/configuration, run relevant deterministic
+checks. Exploration can discover an interface; verify accepted behavior before
+claiming production proof. Preserve valid existing implementation when tests were
+written later; do not delete it or manufacture a failure solely to satisfy order.
 
-Thinking "skip TDD just this once"? Stop. That's rationalization.
-
-## The Iron Law
-
-```
-NO PRODUCTION CODE WITHOUT A FAILING TEST FIRST
-```
-
-Write code before the test? Delete it. Start over.
-
-**No exceptions:**
-- Don't keep it as "reference"
-- Don't "adapt" it while writing tests
-- Don't look at it
-- Delete means delete
-
-Implement fresh from tests. Period.
+If a new regression passes immediately, investigate whether it covers existing
+behavior, misses the defect, or uses the wrong proof layer. For a new deterministic
+contract, observe the expected failure before relying on the repair where practical.
 
 ## Red-Green-Refactor
 
@@ -123,7 +109,8 @@ Confirm:
 - Failure message is expected
 - Fails because feature missing (not typos)
 
-**Test passes?** You're testing existing behavior. Fix test.
+**Test passes?** Investigate whether it covers existing behavior, misses the defect,
+or uses the wrong proof layer. Preserve valid behavior; do not invent a failure.
 
 **Test errors?** Fix error, re-run until it fails correctly.
 
@@ -182,15 +169,10 @@ Confirm:
 
 **Other tests fail?** Fix now.
 
-**"Other tests" means the project's suite, not just your file.** A
-green run of the test you wrote is not a green suite. Before you call
-the change done, run the project's test command (bare `pytest`,
-`npm test`, `cargo test` — whatever the repo uses) even when your task
-named only one test file. A scope statement in your task bounds the
-deliverable, not your verification. Any failure that run shows —
-including one you didn't cause — goes in your report by name; a red
-test you watched scroll past and didn't mention is a report falsified
-by omission.
+Select affected validation under the task's scope, blast radius, and project
+policy. A focused green result does not establish a green suite. Run broader
+checks when required by those owners, not as an automatic ritual. Report actual
+failures and unrun checks without expanding the implementation to unrelated work.
 
 ### REFACTOR - Clean Up
 
@@ -219,39 +201,13 @@ When writing or changing any test, read [writing-good-tests.md](writing-good-tes
 - Keep test-only code in test utilities, out of production classes
 - Understand a dependency's side effects before mocking it
 
-## Common Rationalizations
+## Review the test contract
 
-| Excuse | Reality |
-|--------|---------|
-| "Too simple to test" | Simple code breaks. Test takes 30 seconds. |
-| "I'll test after" | Tests written after pass immediately — which proves nothing. They may test the wrong thing, test the implementation instead of the behavior, or miss the edge case you forgot. You never watched it fail, so you never proved it can catch the bug. Test-first forces that failure. |
-| "Tests after achieve same goals (spirit not ritual)" | Tests-after answer "what does this do?"; tests-first answer "what should this do?" Tests written after are biased by the code you already wrote — you verify the cases you remembered, not the ones you'd have discovered. Coverage without proof the tests work. |
-| "Already manually tested" | Manual testing is ad-hoc: no record of what you covered, no way to re-run it when the code changes, easy to forget cases under pressure. "Worked when I tried it" ≠ comprehensive. Automated tests run the same way every time. |
-| "Deleting X hours is wasteful" | Sunk cost fallacy — that time is already spent either way. The real choice: rewrite with TDD (high confidence) vs. keep it and bolt tests on after (low confidence, likely bugs). Keeping code you can't trust is the waste. |
-| "Keep as reference, write tests first" | You'll adapt it. That's testing after. Delete means delete. |
-| "Need to explore first" | Fine. Throw away exploration, start with TDD. |
-| "Test hard = design unclear" | Listen to test. Hard to test = hard to use. |
-| "TDD will slow me down" | TDD IS the pragmatic path: catches bugs before commit, prevents regressions, lets you refactor without fear. "Pragmatic" shortcuts mean debugging in production — slower, not faster. |
-| "Manual test faster" | Manual doesn't prove edge cases. You'll re-test every change. |
-| "Existing code has no tests" | You're improving it. Add tests for existing code. |
-
-## Red Flags - STOP and Start Over
-
-- Code before test
-- Test after implementation
-- Test passes immediately
-- Can't explain why test failed
-- Tests added "later"
-- Rationalizing "just this once"
-- "I already manually tested it"
-- "Tests after achieve the same purpose"
-- "It's about spirit not ritual"
-- "Keep as reference" or "adapt existing code"
-- "Already spent X hours, deleting is wasteful"
-- "TDD is dogmatic, I'm being pragmatic"
-- "This is different because..."
-
-**All of these mean: Delete code. Start over with TDD.**
+- Reproduce the observable defect and choose proof that can detect it.
+- Keep assertions on behavior rather than mocks or implementation details.
+- Preserve existing valid code and tests while adding missing characterization.
+- Do not weaken a test to hide a failure or inflate focused GREEN into full proof.
+- Record which checks were run and what remains unavailable or unproven.
 
 ## Example: Bug Fix
 
@@ -294,16 +250,16 @@ Extract validation for multiple fields if needed.
 
 Before marking work complete:
 
-- [ ] Every new function/method has a test
-- [ ] Watched each test fail before implementing
+- [ ] Changed behavior has appropriate proof at its owning layer
+- [ ] Observed the expected regression failure where applicable
 - [ ] Each test failed for expected reason (feature missing, not typo)
 - [ ] Wrote minimal code to pass each test
-- [ ] All tests pass
-- [ ] Output pristine (no errors, warnings)
+- [ ] Required affected checks pass; unrun checks are explicit
+- [ ] Inspected output, including failures and relevant warnings
 - [ ] Tests use real code (mocks only if unavoidable)
 - [ ] Edge cases and errors covered
 
-Can't check all boxes? You skipped TDD. Start over.
+Resolve missing required evidence before claiming the affected behavior is verified.
 
 ## When Stuck
 
@@ -316,15 +272,11 @@ Can't check all boxes? You skipped TDD. Start over.
 
 ## Debugging Integration
 
-Bug found? Write failing test reproducing it. Follow TDD cycle. Test proves fix and prevents regression.
-
-Never fix bugs without a test.
+For a bug, reproduce it and establish the owning cause with
+`superpowers:systematic-debugging`. Add the smallest appropriate regression or
+runtime proof, verify the repair, and preserve the limits of that evidence.
 
 ## Final Rule
 
-```
-Production code → test exists and failed first
-Otherwise → not TDD
-```
-
-No exceptions without your human partner's permission.
+Use meaningful proof for the changed behavior. Keep valid implementation,
+regression discipline, and honest evidence states together.

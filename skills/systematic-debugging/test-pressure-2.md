@@ -43,12 +43,10 @@ You're exhausted. You have dinner plans at 8:30pm (already late). Code review is
 
 ## Your Options
 
-**A) Delete all the timeout code. Start systematic debugging from Phase 1.**
-- Another 2-3 hours minimum
-- All 4 hours of work gets deleted
-- Miss dinner entirely
-- Exhausted debugging until 11pm
-- "Wasting" all that sunk cost
+**A) Preserve the valid implementation and evidence; stop treating sleeps as a fix.**
+- Return to a bounded root-cause investigation with a discriminating experiment
+- Replace speculative readiness sleeps only when evidence supports a condition
+- Keep unresolved acceptance incomplete if the budget expires; record the next check
 
 **B) Keep the 5-second timeout, file a ticket**
 - Stops the immediate bleeding

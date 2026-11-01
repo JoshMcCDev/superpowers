@@ -1,0 +1,867 @@
+{
+  "captured_at": 1793498604.694239,
+  "cli": "codex-cli 0.166.0",
+  "metrics_limits": {
+    "loaded_context": "UNKNOWN until scenario transcripts",
+    "human_intervention": "only observed session corrections, not an estimated baseline",
+    "cost_money": "UNKNOWN"
+  },
+  "superpowers": {
+    "head": "e0e0f4939234bf374cbee0a74972ec4db7dee1f5",
+    "status": "",
+    "files": {
+      "skills/dispatching-parallel-agents/SKILL.md": {
+        "sha256": "f96cefc543725ee4981ed0bab22f187ca6ecaed0f82523ed2529533db7352bd1",
+        "bytes": 6496,
+        "lines": 175
+      },
+      "skills/writing-skills/render-graphs.js": {
+        "sha256": "c7f412cc629461c4d10287e668731874c0497707023e3e3f74a5355eb2cee196",
+        "bytes": 4968,
+        "lines": 169
+      },
+      "skills/writing-skills/SKILL.md": {
+        "sha256": "2fcc77e2b6c5939507f32cae13c45281c95e2803a90f06948b5f18515eec1a78",
+        "bytes": 16902,
+        "lines": 391
+      },
+      "skills/using-git-worktrees/SKILL.md": {
+        "sha256": "6dcfcce64c49b0aae2ac94cb6cc21fc58b7cf6349ecb0f8df0c6df083977037b",
+        "bytes": 6975,
+        "lines": 151
+      },
+      "skills/receiving-code-review/SKILL.md": {
+        "sha256": "e71ddd36a69975fe2e66cf663a504a70701057de71833472b5b6b1f42984229e",
+        "bytes": 6548,
+        "lines": 212
+      },
+      "skills/systematic-debugging/root-cause-tracing.md": {
+        "sha256": "75b933b6a8c40bdb2031b10f21654395b56ec6ab6bc7b018c18d3fe57aeb7fb8",
+        "bytes": 5321,
+        "lines": 169
+      },
+      "skills/systematic-debugging/test-pressure-1.md": {
+        "sha256": "0b6a915db0054577819834c79be9eb614e97bddba10d73768e1fbe91cfed048a",
+        "bytes": 1900,
+        "lines": 58
+      },
+      "skills/systematic-debugging/test-pressure-3.md": {
+        "sha256": "96b50a52e2c7989c9cf20fb752c47c1e9a3a70dc362f8f7989f8f5b64dac7708",
+        "bytes": 2692,
+        "lines": 69
+      },
+      "skills/systematic-debugging/condition-based-waiting.md": {
+        "sha256": "e89fec8400d6cd50f43407cec9fab50976ba4d55d0ec2eb51c0bd68036b54c26",
+        "bytes": 3516,
+        "lines": 115
+      },
+      "skills/systematic-debugging/CREATION-LOG.md": {
+        "sha256": "c24733a5b1821bd6bed1fc950261f0b9f4e90097e0bbb96459d8179713730789",
+        "bytes": 4257,
+        "lines": 119
+      },
+      "skills/systematic-debugging/test-pressure-2.md": {
+        "sha256": "b2030aeffba07050e8ad573ddf87486457c4a016a786bb326235bebd856f2016",
+        "bytes": 2283,
+        "lines": 68
+      },
+      "skills/systematic-debugging/find-polluter.sh": {
+        "sha256": "2b9cbf0e131248a8b9a2e2d2b4913806f756229618b4a8e29d7183f13f50bdc1",
+        "bytes": 2318,
+        "lines": 67
+      },
+      "skills/systematic-debugging/test-academic.md": {
+        "sha256": "fe2ba480d78ac0d686dc025f41c2a32a43d642bf533f91b0c6053a04d35d6486",
+        "bytes": 653,
+        "lines": 14
+      },
+      "skills/systematic-debugging/condition-based-waiting-example.ts": {
+        "sha256": "40ae5ebe497fdf310200e43fe986552546d0a22837c0d39e855db1cfd33eb88e",
+        "bytes": 5054,
+        "lines": 158
+      },
+      "skills/systematic-debugging/SKILL.md": {
+        "sha256": "bc53acfd3bfe384ad0ff356986c4814558ef930399a612aaae6722c43254d8d6",
+        "bytes": 10609,
+        "lines": 288
+      },
+      "skills/systematic-debugging/defense-in-depth.md": {
+        "sha256": "1e175fb86fc357e58c6aebf5441e481e1b7868b4380c0456b63a17eefbd18ba7",
+        "bytes": 3650,
+        "lines": 122
+      },
+      "skills/subagent-driven-development/re-review-prompt.md": {
+        "sha256": "0828a5e9cbb12ba49f14621dd8c3953c48c0fc383e75bb5494f055ed0d6d824f",
+        "bytes": 4761,
+        "lines": 115
+      },
+      "skills/subagent-driven-development/task-reviewer-prompt.md": {
+        "sha256": "61738a4bd13775bb8404131291815ea69fc605dd043248b1bb40976abca749cf",
+        "bytes": 8961,
+        "lines": 206
+      },
+      "skills/subagent-driven-development/implementer-prompt.md": {
+        "sha256": "63dc4f75c6a0ed4c112043ca5dae67400f502e7528a1c13ffe656d40e6a3d7c4",
+        "bytes": 6295,
+        "lines": 153
+      },
+      "skills/subagent-driven-development/SKILL.md": {
+        "sha256": "14d078633f61c43209e0e86e126ddd99acb80b9f18f05415b94d6eb5d2ccb0a1",
+        "bytes": 18443,
+        "lines": 312
+      },
+      "skills/writing-plans/SKILL.md": {
+        "sha256": "b7fb92c9a611fc99bf717a83ac1a2a970d4cf29a8af11e061c97485247421ab5",
+        "bytes": 9357,
+        "lines": 192
+      },
+      "skills/brainstorming/visual-companion.md": {
+        "sha256": "6ffcb038b53254bd31debaa15e12dcd4ff24bd63d690e0b644ac6396701cf2e2",
+        "bytes": 13413,
+        "lines": 299
+      },
+      "skills/brainstorming/builder-check-prompt.md": {
+        "sha256": "36d51a4723d6f0a3ce5811a0ea3b3a8424f07533947e1355f5d8cb8cce40c55e",
+        "bytes": 881,
+        "lines": 23
+      },
+      "skills/brainstorming/SKILL.md": {
+        "sha256": "cdb82b470a8d8985455bd14b6ab1318b1b0c37173dcabc24a5818b9284b260f5",
+        "bytes": 13610,
+        "lines": 288
+      },
+      "skills/diagnosing-superpowers/SKILL.md": {
+        "sha256": "f53b64e5b3c4198a14686a5f5ec0907dfc9dff971fbdeb3c64a3021f0ecbab88",
+        "bytes": 6948,
+        "lines": 119
+      },
+      "skills/executing-plans/SKILL.md": {
+        "sha256": "60e3438e3fe68aa5c7a05f7103aa9a0b5244ea1b7ca8b7cd656c2f6d33e10c8f",
+        "bytes": 17283,
+        "lines": 304
+      },
+      "skills/test-driven-development/writing-good-tests.md": {
+        "sha256": "51471c853306ff92ca8bb41dcaea05f31c0e46b03651f8f3c99754b7172f4ae1",
+        "bytes": 8268,
+        "lines": 198
+      },
+      "skills/test-driven-development/SKILL.md": {
+        "sha256": "ce6f957752906071eefce68c700e65ee100e7422ece804c8074793fdabbfd72a",
+        "bytes": 8030,
+        "lines": 282
+      },
+      "skills/requesting-code-review/code-reviewer.md": {
+        "sha256": "2223e649a08be3909a2ab4a58ced895c30fb370156e99a687fcfd8ee2980ae2d",
+        "bytes": 6390,
+        "lines": 196
+      },
+      "skills/requesting-code-review/SKILL.md": {
+        "sha256": "b7e32aa371f7d014230d2e14d600133bfed249f33bd2adec840e2da635578218",
+        "bytes": 2994,
+        "lines": 98
+      },
+      "skills/finishing-a-development-branch/SKILL.md": {
+        "sha256": "0107a861818eecb435cb83b4a2fbe18503db5b37a0b056523802f86035f6a418",
+        "bytes": 8033,
+        "lines": 220
+      },
+      "skills/using-superpowers/SKILL.md": {
+        "sha256": "134bedb5468362fd5aff6c12625f9e3c8084a1ef0afbb4cd36e74307bb0836ba",
+        "bytes": 1997,
+        "lines": 43
+      },
+      "skills/verification-before-completion/SKILL.md": {
+        "sha256": "b8edc8f52383f23658b91586d820435d1de46f661f63aa8bd550275df480a4ca",
+        "bytes": 4474,
+        "lines": 134
+      },
+      "skills/writing-skills/references/anthropic-best-practices.md": {
+        "sha256": "217629b356c09c9bd11017c9788e8fc654ca1b32c92d4a51cd490e16dd65e59a",
+        "bytes": 46197,
+        "lines": 1150
+      },
+      "skills/writing-skills/references/bulletproofing.md": {
+        "sha256": "436e9b5f671515bc27d39eae6f2a6bd783f0e1285dc21d882765221a79839b9b",
+        "bytes": 2704,
+        "lines": 80
+      },
+      "skills/writing-skills/references/discovery.md": {
+        "sha256": "c6bbc74af3be90f693f7cbc986af6fa94e8df75f65109b52e96032587f5b92af",
+        "bytes": 7616,
+        "lines": 201
+      },
+      "skills/writing-skills/references/graphviz-conventions.dot": {
+        "sha256": "e2890a593c91370e384b42f2f67b1a6232c9e69dddea7891a0c1c46d7b20b694",
+        "bytes": 5970,
+        "lines": 172
+      },
+      "skills/writing-skills/references/testing-skills-with-subagents.md": {
+        "sha256": "cb8f78f1ae0e358136691a8bb944756b4c3656cd3f3a9334bed5ccc3a44c9dcd",
+        "bytes": 12847,
+        "lines": 371
+      },
+      "skills/writing-skills/references/flowcharts.md": {
+        "sha256": "8b1f542391f274f0d33f3457ac099a3d317d6877eaa3b8d3b1ebef151b55fda7",
+        "bytes": 1262,
+        "lines": 37
+      },
+      "skills/writing-skills/references/persuasion-principles.md": {
+        "sha256": "a51bc9bf75189ea73a27b3fb504a2fdfdb966fb1f7f1cdf03203230a216ccc03",
+        "bytes": 5901,
+        "lines": 187
+      },
+      "skills/writing-skills/references/CLAUDE_MD_TESTING.md": {
+        "sha256": "0b379a3415e185d3c434b3ad283d8aa132f3022c2a4f210f168865b5986bcef0",
+        "bytes": 5423,
+        "lines": 189
+      },
+      "skills/systematic-debugging/references/agent-boundary-evidence.md": {
+        "sha256": "0cdb3a664341000af779f372a72f0f0fd7df3663d41bada6fa86e6492c00983e",
+        "bytes": 1052,
+        "lines": 17
+      },
+      "skills/systematic-debugging/references/repeated-failure-research.md": {
+        "sha256": "eabec49ba3b62c600b2f18f73e403fec14b936b14369b00a2f5a7a52ee6ee217",
+        "bytes": 1147,
+        "lines": 17
+      },
+      "skills/subagent-driven-development/scripts/sdd-workspace": {
+        "sha256": "4fd9770e7a49b6bde488c0e92bac1b3bd01fcbdaf8f06b6c4efbe3a1abd99f86",
+        "bytes": 3684,
+        "lines": 87
+      },
+      "skills/subagent-driven-development/scripts/review-package": {
+        "sha256": "f9275175b2276b1d5fdb1bae0bedaadd2a950659b7c6f311ea37ff85e1861b1f",
+        "bytes": 2029,
+        "lines": 53
+      },
+      "skills/subagent-driven-development/scripts/task-brief": {
+        "sha256": "cc563538e09abf719b34ddf4b2fa7a65cf3b301729039dbfa923cb060f729146",
+        "bytes": 1322,
+        "lines": 43
+      },
+      "skills/subagent-driven-development/references/handling-reports.md": {
+        "sha256": "ee30175d2c39ca796f4283dae4e3851b7cfd0b326ecccef70531482af3406230",
+        "bytes": 1117,
+        "lines": 15
+      },
+      "skills/subagent-driven-development/references/final-review.md": {
+        "sha256": "06a53687bf914b5bf057fc6a63d8df97be334eea6a2d93dea01dcee9bb7e00d9",
+        "bytes": 2203,
+        "lines": 41
+      },
+      "skills/subagent-driven-development/references/batching.md": {
+        "sha256": "b54dc7e23dbfb90db89bcb2fb3af591aabf6a271a165fbc0da4c6f9439980eac",
+        "bytes": 583,
+        "lines": 11
+      },
+      "skills/subagent-driven-development/references/preflight.md": {
+        "sha256": "3ea21c5fc1af1a190ac8a9d19ceb0849b47bf2ffe27b87dffcc21b6a0539776c",
+        "bytes": 1353,
+        "lines": 26
+      },
+      "skills/subagent-driven-development/references/resuming.md": {
+        "sha256": "61fc0ff4963de570d7ab058e1269b6df1f3ef68a7f05db5051ce55edc4ce4155",
+        "bytes": 712,
+        "lines": 13
+      },
+      "skills/subagent-driven-development/references/cannot-verify.md": {
+        "sha256": "e698713a15e0eabf1a2ab26ffe1bb04bf70c9d6d2e2060d44a0f9a1bdd4408bf",
+        "bytes": 513,
+        "lines": 10
+      },
+      "skills/subagent-driven-development/references/fix-loop.md": {
+        "sha256": "046215cd98e900d423457673504f8a9f9dbfc0e2908e02078b2f0f416759d1b0",
+        "bytes": 4714,
+        "lines": 81
+      },
+      "skills/brainstorming/scripts/start-server.sh": {
+        "sha256": "a4e5ae84275bcaacd2f84345afeabe59cf7b00ba080e123da7cc1fb226f12847",
+        "bytes": 6908,
+        "lines": 209
+      },
+      "skills/brainstorming/scripts/helper.js": {
+        "sha256": "43c6d69954a46ec34a2a262bcc62a9a7e83e839c739f199cb72646d397c686e3",
+        "bytes": 5615,
+        "lines": 167
+      },
+      "skills/brainstorming/scripts/frame-template.html": {
+        "sha256": "6a8a4e58bd6a44b904e2e3c57de774481d909204597e1498de53f1b2fecc4c4e",
+        "bytes": 8094,
+        "lines": 213
+      },
+      "skills/brainstorming/scripts/stop-server.sh": {
+        "sha256": "0b5ccbbd57f62d3ed88993f7940b5ee0e5c0fc9b21c550c623da4f6292e47daf",
+        "bytes": 3263,
+        "lines": 120
+      },
+      "skills/brainstorming/scripts/server.cjs": {
+        "sha256": "763abf96510e0b892a1141397b31aa82ef900cf87ed34dde94bc8782baf4a7ca",
+        "bytes": 25699,
+        "lines": 723
+      },
+      "skills/diagnosing-superpowers/prompts/stumbles.md": {
+        "sha256": "1f2d1f048aff7b8b400006301f1ce8c232ecc7e9d5f705af27a849b2c03ea2e7",
+        "bytes": 1330,
+        "lines": 28
+      },
+      "skills/diagnosing-superpowers/prompts/analyst-common.md": {
+        "sha256": "88801c36070be2a54a8a9a29632b01ab21db053e2e76ee49b5252a9b74ca4090",
+        "bytes": 1582,
+        "lines": 38
+      },
+      "skills/diagnosing-superpowers/prompts/similar-session.md": {
+        "sha256": "b190f713b463df2bb5ec3914647e204074d1bd50643a53159db6d13cace916c1",
+        "bytes": 1711,
+        "lines": 38
+      },
+      "skills/diagnosing-superpowers/prompts/request-conflicts.md": {
+        "sha256": "e800e38d8b7752c212c76c5c3ed75cd78b749684263ea0c313586f26af6f4b5c",
+        "bytes": 1011,
+        "lines": 20
+      },
+      "skills/diagnosing-superpowers/prompts/cost-and-time.md": {
+        "sha256": "fe97a66d4db3b436816ef82694bda413b522b3a862dd41978da01e358fffecc4",
+        "bytes": 1640,
+        "lines": 28
+      },
+      "skills/diagnosing-superpowers/prompts/plan-adherence.md": {
+        "sha256": "1dcbab82033598a2e9c9ee42e950d4b1822d2c871c02cef9e102cdd5cbbda113",
+        "bytes": 1637,
+        "lines": 29
+      },
+      "skills/diagnosing-superpowers/prompts/quality-evidence.md": {
+        "sha256": "749d11cf678f379ed77a29274cad456634e0284aa523639a1a214a9f2b986eb1",
+        "bytes": 1476,
+        "lines": 26
+      },
+      "skills/diagnosing-superpowers/prompts/repeated-work.md": {
+        "sha256": "895027f2dfa4b1b8bcdb7ac9aec8d45a80bff212fad6ec6cad5ab38fa68322f5",
+        "bytes": 1469,
+        "lines": 30
+      },
+      "skills/diagnosing-superpowers/prompts/skill-timeline.md": {
+        "sha256": "45d604d583b57a77b9033eced8eb875ef342af70fcd66cf7d15c6dc89964890f",
+        "bytes": 1646,
+        "lines": 30
+      },
+      "skills/diagnosing-superpowers/prompts/scrub-audit.md": {
+        "sha256": "5cc48f05a7f81f5f7e05e0c7ceafc0fb8774bcaf75fe88dcb5c7e408026c70ad",
+        "bytes": 1363,
+        "lines": 33
+      },
+      "skills/diagnosing-superpowers/prompts/scrub.md": {
+        "sha256": "854cb3320cc5377b493cea2f72519d67983464882db68a0f408a7d0a0f040b8c",
+        "bytes": 1471,
+        "lines": 29
+      },
+      "skills/diagnosing-superpowers/templates/issue.md": {
+        "sha256": "afd21779e5de5bc5adfe2f5a50a04e44ab8d50d9ad0f829243de248d6f023eed",
+        "bytes": 2680,
+        "lines": 70
+      },
+      "skills/diagnosing-superpowers/templates/case.md": {
+        "sha256": "597892462be83bc478536ec91f7c285f6dd25d119c560734a3a180fe8471301d",
+        "bytes": 2983,
+        "lines": 64
+      },
+      "skills/diagnosing-superpowers/templates/bundle-README.md": {
+        "sha256": "2e6ddc6b106028d5ebd00a50ad93a77111d675c219ee1273cd0857869e8d51ec",
+        "bytes": 3672,
+        "lines": 77
+      },
+      "skills/diagnosing-superpowers/templates/report.md": {
+        "sha256": "38295d0fd785e8608f330815c59ebd7047942002ec7085aecbed54681f56b0c1",
+        "bytes": 2359,
+        "lines": 82
+      },
+      "skills/diagnosing-superpowers/references/redaction-policy.md": {
+        "sha256": "96b16f47074838fe2d7e609577d6f8b0ad460f8378b281a3f96ee23cb5a08bde",
+        "bytes": 2243,
+        "lines": 34
+      },
+      "skills/diagnosing-superpowers/references/context-safety.md": {
+        "sha256": "e6be2bd3495f454d4bedee9484d728d245d1fa656e11fc4ceec5693c16e4730a",
+        "bytes": 990,
+        "lines": 22
+      },
+      "skills/diagnosing-superpowers/references/session-discovery.md": {
+        "sha256": "6d1dced083e5d978448a78df298cf515531b0eb39b2854a4a2afbffeb69a7435",
+        "bytes": 1859,
+        "lines": 31
+      },
+      "skills/diagnosing-superpowers/references/github-issues.md": {
+        "sha256": "d26ef9197b4a6ae5159ae6d11abd162bcc624d95fc7ccf508e07b68f916a1b19",
+        "bytes": 1636,
+        "lines": 47
+      },
+      "skills/executing-plans/scripts/task-done": {
+        "sha256": "aaf69602d2b57b2da51a11c4cafc981a45a7b362f04ee3396272f74e925ea862",
+        "bytes": 1708,
+        "lines": 52
+      },
+      "skills/executing-plans/scripts/task-start": {
+        "sha256": "f833693c8fce3700fc9f841562d80f8015cd40f652c168a3405ac3e46947a1fe",
+        "bytes": 963,
+        "lines": 28
+      },
+      "skills/using-superpowers/references/antigravity-tools.md": {
+        "sha256": "4880f6de3da4e32f9659ebe7a72b9e0ebfff04e028c2ed96173f86d0387a04c0",
+        "bytes": 1495,
+        "lines": 23
+      },
+      "skills/using-superpowers/references/codex-tools.md": {
+        "sha256": "1a38ad9b188c393052f58d95657a1c35ea6aafc8b5a27f198f3922912f70bbe7",
+        "bytes": 4762,
+        "lines": 108
+      },
+      "skills/using-superpowers/references/gemini-tools.md": {
+        "sha256": "62b9157bcb0ee3c6784e3d0da0798ddfa5872f9e0c34bea48f3079dabea71965",
+        "bytes": 4598,
+        "lines": 63
+      },
+      "skills/using-superpowers/references/pi-tools.md": {
+        "sha256": "703dbc83d23ecab9c6f388460c38abc482e9dee2fe6772a8c7a255152ad3a4d5",
+        "bytes": 1242,
+        "lines": 16
+      },
+      "skills/using-superpowers/references/hermes-tools.md": {
+        "sha256": "e2185c976a3c87503910e05e2aea58cc89bc8e569bb624b93df9958ac47a9190",
+        "bytes": 1964,
+        "lines": 56
+      },
+      "skills/using-superpowers/references/claude-code-tools.md": {
+        "sha256": "21479a3fee27448cab8748a3b5687e53bb257883bda9c070426f9a1ab5cebf1b",
+        "bytes": 1469,
+        "lines": 29
+      },
+      "skills/using-superpowers/references/muse-tools.md": {
+        "sha256": "5a1da5c575fe18456ca71cd47ebfd8a38c745f8d82a67fe64d5b83080000eeb3",
+        "bytes": 1908,
+        "lines": 35
+      }
+    },
+    "file_count": 86,
+    "bytes": 437075,
+    "lines": 10926
+  },
+  "bevy": {
+    "head": "84823be3930df85dc5a343fec91d9c2c01573464",
+    "status": "",
+    "files": {
+      ".agents/README.md": {
+        "sha256": "73ef1dba37d8f7698bf7568da797ef7a7b42d7a632df072c22e74580e24fd7b0",
+        "bytes": 3297,
+        "lines": 33
+      },
+      ".agents/repo-map.md": {
+        "sha256": "5dee3a0e491cbf0c4a3e032276cbbbfe0f0ff162b363efe8d4e26674f2ac490a",
+        "bytes": 21121,
+        "lines": 124
+      },
+      ".agents/THIRD_PARTY_NOTICES.md": {
+        "sha256": "f0b24fc2cac1ce7c9225af8fcaada39e17b5b87493b6586d33b6ef63fefa7eaa",
+        "bytes": 10152,
+        "lines": 226
+      },
+      ".agents/external-skills.md": {
+        "sha256": "73d23538b2c86fd16e97f8f85b13464ea58165bf0ec37f27179a4d912171acda",
+        "bytes": 14662,
+        "lines": 99
+      },
+      ".agents/architecture/source-size-policy.json": {
+        "sha256": "3e7a737ee706a78737ff08037e115117570d60d7baad6c942d9deef1a76baad1",
+        "bytes": 12861,
+        "lines": 280
+      },
+      ".agents/architecture/workspace-policy.json": {
+        "sha256": "addfca5889df8f4bfd8f2a52491a155ecf2d629e73d8f01cc089e94afe6a004b",
+        "bytes": 57203,
+        "lines": 819
+      },
+      ".agents/architecture/data-and-message-flow.md": {
+        "sha256": "bdc5288410be07f4bedddeff8288b63cc650f2ed8af783c6367905ad8cc3d771",
+        "bytes": 2210,
+        "lines": 45
+      },
+      ".agents/architecture/crate-architecture.md": {
+        "sha256": "b2561b5b4ef19c60b3cc8c2152b9dd2d353f646dd2e208979716e9e2ae2ccb4d",
+        "bytes": 5948,
+        "lines": 108
+      },
+      ".agents/architecture/plugin-composition.md": {
+        "sha256": "2a3fa5abce3e0ff4f2a6d5517b258c6b089a8d0774fe4f02d11b16e2beb02b11",
+        "bytes": 1275,
+        "lines": 29
+      },
+      ".agents/architecture/workspace-checks.md": {
+        "sha256": "abee0f62f6d49bef533284adfbc17062330bf92fd9f304203eb674eb9dc80d0f",
+        "bytes": 26410,
+        "lines": 391
+      },
+      ".agents/architecture/module-structure.md": {
+        "sha256": "6ac82be578f6049d60249f0840e6aede97ba65cb6f93e94908edf04514a46a75",
+        "bytes": 3028,
+        "lines": 47
+      },
+      ".agents/architecture/project-layout.md": {
+        "sha256": "6019b1e6922f809e1b98b835f047a8769e35da9e9fc3a0135dcffc6b31fe639d",
+        "bytes": 3793,
+        "lines": 78
+      },
+      ".agents/architecture/size-discipline.md": {
+        "sha256": "456e8f4d9484d2c9ad90fb8ae9bb1b61bfb03169766c2929b11fdd372d560b68",
+        "bytes": 3957,
+        "lines": 70
+      },
+      ".agents/architecture/schedules-and-system-flow.md": {
+        "sha256": "d9a064c45c74e1cef1ecda3663f0257a4062934e9e935757bd7b3f8db03f3a7c",
+        "bytes": 1660,
+        "lines": 29
+      },
+      ".agents/bevy/versioning-and-sources.md": {
+        "sha256": "4eccb74c5bee05d358eaaa925673b61f9497721a558ebfd7b66e93442ebe69d5",
+        "bytes": 2579,
+        "lines": 38
+      },
+      ".agents/rust/crate-selection.md": {
+        "sha256": "1d3bb98cc28ad18e2955e97cb77eece811ac35fdd04763d2c6db36a863734698",
+        "bytes": 20236,
+        "lines": 203
+      },
+      ".agents/licenses/getsentry-skills-Apache-2.0.txt": {
+        "sha256": "96e78a9ce85795b117c8929887bdb78f88bf23f7b85a31f0872cde4dff7e92cd",
+        "bytes": 10785,
+        "lines": 190
+      },
+      ".agents/licenses/full-stack-skills-rust-skills-Apache-2.0.txt": {
+        "sha256": "9788c988b60209ecf085939b225ef19f4b0313b35df22c230469d4ced2061938",
+        "bytes": 11339,
+        "lines": 201
+      },
+      ".agents/workflows/validation.md": {
+        "sha256": "dc0c1229b5cb4a65ba94543ee3921944e2f1c71a30b6074ee1a9b59effca4535",
+        "bytes": 9135,
+        "lines": 128
+      },
+      ".agents/workflows/documentation-policy.md": {
+        "sha256": "cc996a5c669665f40ae271919badd09a4564e6eeddf03000592baa244e3e4658",
+        "bytes": 5532,
+        "lines": 106
+      },
+      ".agents/workflows/project-memory.md": {
+        "sha256": "9210fdef43b4c1c1404f04d3fc450b1399c76a9959d2e6a5b723435e2c1079b4",
+        "bytes": 9205,
+        "lines": 102
+      },
+      ".agents/workflows/crate-readmes.md": {
+        "sha256": "b21e4822fd8b052cae35cfadf4a872b1dee704742467d7261c22d48d7f49a317",
+        "bytes": 1584,
+        "lines": 32
+      },
+      ".agents/workflows/documentation-style.md": {
+        "sha256": "82f1d9c4408bd40c8786f7f76403d2f193cb1057efb336c7d6caeb6aeea08abd",
+        "bytes": 2412,
+        "lines": 40
+      },
+      ".agents/workflows/testing.md": {
+        "sha256": "fa4c52c74705d614122352c26384ee452ccb4e7b4c1a74baf6564ea4797c364f",
+        "bytes": 6707,
+        "lines": 85
+      },
+      ".agents/workflows/references/rust-validation-tools.md": {
+        "sha256": "c924b1b27dee305ac888516b6a76790b93af59dfe8f8ebcf6f96fd095244201f",
+        "bytes": 16286,
+        "lines": 347
+      },
+      ".agents/skills/issue-to-pr/SKILL.md": {
+        "sha256": "5a310e689fe5f4ed0a93451c6ec27947f94bb3217c85537c07ce203c4a1dab72",
+        "bytes": 5278,
+        "lines": 47
+      },
+      ".agents/skills/gauntlet-plugin-authoring/SKILL.md": {
+        "sha256": "e3372e23b4fcdf3984adcaa0ccff9e8a7275e5b4031e462d6635fd4e6d36fccf",
+        "bytes": 3919,
+        "lines": 68
+      },
+      ".agents/skills/gauntlet-evals-start/SKILL.md": {
+        "sha256": "1e79a9bca948d4591850d34d8d9f75159d99548af8f3f8e829d85b6ac61a4ac1",
+        "bytes": 3665,
+        "lines": 39
+      },
+      ".agents/skills/rust-best-practices/SKILL.md": {
+        "sha256": "3c4008d0af31795e2283f3d50297661efd50939b6c15c3fda141b3b9007249ce",
+        "bytes": 6859,
+        "lines": 128
+      },
+      ".agents/skills/search-first/SKILL.md": {
+        "sha256": "a8873936d985aa9d5ae38b5ec18419ba78625d8e4742bc1509c065ac2fbf58f9",
+        "bytes": 4614,
+        "lines": 77
+      },
+      ".agents/skills/documentation-health/SKILL.md": {
+        "sha256": "7dafd7f8342f26b20d3d1fe8da3fc9171c80538d72029e03fd954422dc57ab63",
+        "bytes": 8510,
+        "lines": 181
+      },
+      ".agents/skills/systematic-debugging/SKILL.md": {
+        "sha256": "a7f89efdfd7c6d907e770af102bccd4d70b54f6a15c396316575d8f2703317c9",
+        "bytes": 13973,
+        "lines": 369
+      },
+      ".agents/skills/structure-health/SKILL.md": {
+        "sha256": "3c698f4de7d1644f007f24865c72a358f9ff5ad4aec34334efdbe6a71aec0834",
+        "bytes": 9820,
+        "lines": 181
+      },
+      ".agents/skills/serena-memory-capture/SKILL.md": {
+        "sha256": "7b7eab5d0991d906186bad770c6ef004c92fc17e610a74d4a2c08ffe91bae705",
+        "bytes": 8421,
+        "lines": 146
+      },
+      ".agents/skills/gauntlet-review-interface/SKILL.md": {
+        "sha256": "9be2b6060b18b0e296c5f758e00495c7c75c45dceb505ac06c671a03fb0a289f",
+        "bytes": 3671,
+        "lines": 89
+      },
+      ".agents/skills/gauntlet-judge-design/SKILL.md": {
+        "sha256": "30dba63f33ef1956fc424d82d5179642fdb1d16d24b1acec246c0347e6563163",
+        "bytes": 3411,
+        "lines": 92
+      },
+      ".agents/skills/gauntlet-evaluator-validation/SKILL.md": {
+        "sha256": "2970fc3ea36e3f166c2288359b1d083baed7f3fd8a22c2b61076cd70b849ba66",
+        "bytes": 6054,
+        "lines": 139
+      },
+      ".agents/skills/github-pr-workflow/SKILL.md": {
+        "sha256": "9d833a80d61c9442cd757d6c0cceffac5a58faef8847246b7f468895ddc01e17",
+        "bytes": 6050,
+        "lines": 92
+      },
+      ".agents/skills/gauntlet-rag-evaluation/SKILL.md": {
+        "sha256": "0b1e53da17be37821a42ae926db0b2404d25be0e771f25878c4c9b6c5d869082",
+        "bytes": 3833,
+        "lines": 100
+      },
+      ".agents/skills/python-engineering/SKILL.md": {
+        "sha256": "add482b9a03d25115ef9fdc49d29b78f9f4ca7d5d141defaa59baf1034247a45",
+        "bytes": 5062,
+        "lines": 98
+      },
+      ".agents/skills/test-driven-development/SKILL.md": {
+        "sha256": "aa9487ac89c6352598478b49b09663025a2fc084a3441fcb7b41f1e5994e6179",
+        "bytes": 7366,
+        "lines": 218
+      },
+      ".agents/skills/gauntlet-typed-assistance/SKILL.md": {
+        "sha256": "7b149b9fff3ead3da003a8258b412e4b71098506eaca614699a1c6dd1e07ee9e",
+        "bytes": 11863,
+        "lines": 209
+      },
+      ".agents/skills/gauntlet-synthetic-eval-data/SKILL.md": {
+        "sha256": "6f48c51d75a6388fac330c7ac4b9fda38a1bc39f6ca9950619970d8659c6ef85",
+        "bytes": 3310,
+        "lines": 73
+      },
+      ".agents/skills/serena-health/SKILL.md": {
+        "sha256": "359301f2ac56ced5af1b45c5f84561dbd5bdd5f400736e620fcd02de39e20177",
+        "bytes": 7187,
+        "lines": 136
+      },
+      ".agents/skills/gauntlet-eval-audit/SKILL.md": {
+        "sha256": "bb241798dd9c455c3dd3e3f42598de1f33a4731a6fc344d17cbf8fee5e059b72",
+        "bytes": 8166,
+        "lines": 158
+      },
+      ".agents/skills/crate-health/SKILL.md": {
+        "sha256": "d875c9a311a970adb6c36249ada545efd3887f3bf1a93bf47783777e83ec31d1",
+        "bytes": 8811,
+        "lines": 143
+      },
+      ".agents/skills/bevy-gameplay-proof/SKILL.md": {
+        "sha256": "23d3fc33d3388dc08924d17ba247fb4eee5c08dee270fe4b2bb894c3e9f94580",
+        "bytes": 7540,
+        "lines": 130
+      },
+      ".agents/skills/benchmark-preflight/SKILL.md": {
+        "sha256": "fb062d3c9344a3966dee1d9ab828ff68b918acdeb75965cbeacc80b982f34854",
+        "bytes": 12611,
+        "lines": 259
+      },
+      ".agents/skills/gauntlet-error-discovery/SKILL.md": {
+        "sha256": "799dc9db7d2eb46114078926a895a0715f9a2c1633e759f56ccf3a6bd5e6c50a",
+        "bytes": 4593,
+        "lines": 122
+      },
+      ".agents/skills/verification-before-completion/SKILL.md": {
+        "sha256": "408b8fc1b7fe18b558d4d9b3b5954d4e5e150b15bf6694ac04dfdbdecb85c0ca",
+        "bytes": 4190,
+        "lines": 127
+      },
+      ".agents/skills/typesafe-ai/SKILL.md": {
+        "sha256": "71ea90d7906c6554c4f4c460ef7361b2d26f59116ccdae986dc6d997b9389f52",
+        "bytes": 10040,
+        "lines": 149
+      },
+      ".agents/skills/rust-best-practices/references/chapter_06.md": {
+        "sha256": "9aaec6375b1c2db67e24a9c4e2bfdd9a47b363a6598d282aad180dd09af1e486",
+        "bytes": 6812,
+        "lines": 161
+      },
+      ".agents/skills/rust-best-practices/references/chapter_01.md": {
+        "sha256": "861af081c1ddc38e77964b84685a2e7ee698bc84e875fb8ac0078678e55a636e",
+        "bytes": 25262,
+        "lines": 647
+      },
+      ".agents/skills/rust-best-practices/references/async-lifecycle.md": {
+        "sha256": "b280bcea2f81e5b6c63386497a98b934342dd599636b54c35c19366313d11bb2",
+        "bytes": 8032,
+        "lines": 130
+      },
+      ".agents/skills/rust-best-practices/references/unsafe-and-ffi.md": {
+        "sha256": "f5395d49f6aebc40e7175c2bbb01ae5a75bcda4e1d4fb1d79871b666623dd0e4",
+        "bytes": 6479,
+        "lines": 99
+      },
+      ".agents/skills/rust-best-practices/references/chapter_09.md": {
+        "sha256": "7a945c2c41ea68d456eabfec998c74ed69674c96381bada94cc9ae0a1956d935",
+        "bytes": 11542,
+        "lines": 279
+      },
+      ".agents/skills/rust-best-practices/references/chapter_05.md": {
+        "sha256": "3d09e591572eb41cc464dfe39eb524e3229f2e22c33ce3da36927887c53ecebd",
+        "bytes": 15008,
+        "lines": 391
+      },
+      ".agents/skills/rust-best-practices/references/chapter_02.md": {
+        "sha256": "c9552ee43944e5ca5ee8fbcf44563e7882581a5c804a5ab45e8c6b8b4f5effb0",
+        "bytes": 5451,
+        "lines": 117
+      },
+      ".agents/skills/rust-best-practices/references/chapter_03.md": {
+        "sha256": "c645d6501241933519988c357307758ddeb753fdf01e23bf57fec8b6c2a74ce1",
+        "bytes": 8784,
+        "lines": 209
+      },
+      ".agents/skills/rust-best-practices/references/chapter_07.md": {
+        "sha256": "a4ec35c46290ee5b0fc3518ff1466670b4b2e12654dedfebd2cd7cf03a486d69",
+        "bytes": 8233,
+        "lines": 226
+      },
+      ".agents/skills/rust-best-practices/references/chapter_08.md": {
+        "sha256": "ad38c2b5d493d28b1169067484e53cb19214797d9baf0059c729ff791c3492c9",
+        "bytes": 10362,
+        "lines": 256
+      },
+      ".agents/skills/rust-best-practices/references/chapter_04.md": {
+        "sha256": "3257b7dfa06698bd59fe2d315b33b22181926d30cda3776bc16c792b51eeb239",
+        "bytes": 7082,
+        "lines": 180
+      },
+      ".agents/skills/documentation-health/references/codex-skill-and-mcp-review.md": {
+        "sha256": "3ea033dd7c30106b8cf316b7a648fdf2122b2b7ee0fa268d3fefa6af3eaf1e73",
+        "bytes": 4601,
+        "lines": 69
+      },
+      ".agents/skills/systematic-debugging/references/root-cause-tracing.md": {
+        "sha256": "39ed2c87fcba546c344003ef56ee53da1a34784dd4316a32a1cd4b94475c8db0",
+        "bytes": 3174,
+        "lines": 113
+      },
+      ".agents/skills/systematic-debugging/references/condition-based-waiting.md": {
+        "sha256": "afcff618b559247d4d71bb734ec4f3a5a1e295d280b5cc859ce3890110d82b7e",
+        "bytes": 2187,
+        "lines": 81
+      },
+      ".agents/skills/systematic-debugging/references/defense-in-depth.md": {
+        "sha256": "1a3fd52d411d70ed0f4a38234886ab88f079fe346d831b3575184203daeff8e5",
+        "bytes": 4280,
+        "lines": 105
+      },
+      ".agents/skills/structure-health/references/observations-and-jev.md": {
+        "sha256": "6836d588a184311bc1fa52a405f9044af79e7b0618192a43062eee445ec3a53e",
+        "bytes": 3891,
+        "lines": 42
+      },
+      ".agents/skills/github-pr-workflow/references/review-and-feedback.md": {
+        "sha256": "6756138eef2ca3d6fb9817159cbb1bf261b39681d0ed68309cc361b58d4605f9",
+        "bytes": 5739,
+        "lines": 89
+      },
+      ".agents/skills/github-pr-workflow/references/workspace-and-closeout.md": {
+        "sha256": "6017241f71edb5cb40de3423f0c10d506392c4e4347010633f048b64488671e6",
+        "bytes": 2484,
+        "lines": 43
+      },
+      ".agents/skills/github-pr-workflow/references/jev-review-seams.md": {
+        "sha256": "c1f7ebeb27becf226b1dd7abf717ae018f01ed7b1e70eff556d409949bf55bf2",
+        "bytes": 1853,
+        "lines": 29
+      },
+      ".agents/skills/github-pr-workflow/references/anti-pattern-investigation.md": {
+        "sha256": "4d833598bc196fa092bd2557a2939f47d02dbc5fb9de6cbb43753518ba1d8084",
+        "bytes": 5795,
+        "lines": 96
+      },
+      ".agents/skills/python-engineering/references/reliability-patterns.md": {
+        "sha256": "39a180a164e4b18e34510cd43c3a2da53a307f40fa1205df4e4ef80dde086ae3",
+        "bytes": 4129,
+        "lines": 69
+      },
+      ".agents/skills/test-driven-development/references/writing-good-tests.md": {
+        "sha256": "dccaf1a39a3310cc95d409d35a730c750515b5f05b1f51e47a21eac8dd191904",
+        "bytes": 4666,
+        "lines": 146
+      },
+      ".agents/skills/gauntlet-typed-assistance/references/decision-loop-contract.md": {
+        "sha256": "05f19c8bea24f0dee6b8992406c52867106e2e6d5333cbd6bfe3af374bfc375b",
+        "bytes": 4658,
+        "lines": 143
+      },
+      ".agents/skills/gauntlet-typed-assistance/references/opportunity-preflight.md": {
+        "sha256": "a8d963e353fc283dc15064b602022e95cc24fdd19966a7ba7793bc67916ce7f1",
+        "bytes": 3445,
+        "lines": 46
+      },
+      ".agents/skills/gauntlet-typed-assistance/references/runtime-action-selection.md": {
+        "sha256": "7931912eb290bf09c5eab741682c85642faf27da4ecb5dde372d69af7d517840",
+        "bytes": 4481,
+        "lines": 100
+      },
+      ".agents/skills/gauntlet-typed-assistance/references/operational-examples.md": {
+        "sha256": "46cef4abaf8ece6aa19ad191c7bf6ed37e931d5566185cc5220af4e11841518e",
+        "bytes": 2381,
+        "lines": 50
+      },
+      ".agents/skills/gauntlet-typed-assistance/references/developer-decision-schemas.md": {
+        "sha256": "e90b4c3aaaaf15267e17956c594aee9de6635f6196125fda80c058a628a36d2d",
+        "bytes": 10882,
+        "lines": 184
+      },
+      ".agents/skills/gauntlet-typed-assistance/references/qualification-and-failure-analysis.md": {
+        "sha256": "fef01e954bb462ee81c387686ff55f60ae101461abe704cbf6370600cb8d6322",
+        "bytes": 3806,
+        "lines": 68
+      },
+      ".agents/skills/gauntlet-eval-audit/references/skill-behavior-scenarios.md": {
+        "sha256": "45ae62fe970be73df2b040cd2d42d460bb2be206e429f0848de0a195dace403a",
+        "bytes": 4370,
+        "lines": 77
+      },
+      ".agents/skills/benchmark-preflight/references/live-pilot-and-interpretation.md": {
+        "sha256": "6c29146d83bd4d5d2434cbb9d51ebc4d81230a85e2661454051098e08ca08e58",
+        "bytes": 3143,
+        "lines": 63
+      },
+      ".agents/skills/benchmark-preflight/references/matched-experiment-runner.md": {
+        "sha256": "c69687b0cdb72c5b83a0779b198efbba2b13037e087b00ed0fd3830d2d326dce",
+        "bytes": 6972,
+        "lines": 109
+      }
+    },
+    "file_count": 82,
+    "bytes": 642178,
+    "lines": 11837
+  }
+}

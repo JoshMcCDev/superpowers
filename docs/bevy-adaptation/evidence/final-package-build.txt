@@ -1,0 +1,6 @@
+Archive: /tmp/superpowers-adaptation-evidence/superpowers-7.0.1-bevy.1-final.zip
+Format:  zip
+Version: 7.0.1-bevy.1
+Entries: 151
+Skills:  15
+SHA-256: 8e017c68169dbd11a1eaf4e0126d1fbf01fa71df3f2015b89effc17ed4b4831e

@@ -33,14 +33,13 @@ Create a todo per step. Steps 5–7 run only on their stated condition.
    `~/.superpowers/diagnosing-superpowers/<session-id>/`, tell your
    partner the path, and fill `templates/case.md` there, following its
    provenance rules for environment and skill observations.
-3. **Triage.** Read the region around the reported problem yourself. Then
-   dispatch one analyst subagent per dimension in parallel, each given the
-   case file path, `prompts/analyst-common.md`, and one dimension file from
-   `prompts/`: `skill-timeline.md`,
-   `plan-adherence.md`, `repeated-work.md`, `stumbles.md`,
-   `quality-evidence.md`, `request-conflicts.md`, `cost-and-time.md`.
-   Split a dimension by turn range when the transcript is long. Discard
-   any returned finding without `path:line`.
+3. **Triage.** Read the reported region yourself. Inspect the relevant
+   dimensions inline, or use authorized independent analysts with exact case
+   paths, `prompts/analyst-common.md`, and the matching `prompts/` files.
+   Cover skill-timeline, plan-adherence, repeated-work, stumbles,
+   quality-evidence, request-conflicts, and cost-and-time as relevant.
+   Follow host delegation/model policy; disclose review limits. Split long
+   transcripts by turn range. Discard findings without `path:line`.
 4. **Report.** Fill every section of `templates/report.md` in order, write
    it to the workspace, show it, and give the path. Check what cited content
    actually proves and preserve the supporting case; a symlink alias is not a
@@ -57,8 +56,8 @@ Create a todo per step. Steps 5–7 run only on their stated condition.
    scrubbed bundle is available on request, then wait. Ask the redaction
    level, stating what each includes: skeleton (no tool-result bodies),
    evidence (bodies only for cited events), full. Build the bundle per
-   `templates/bundle-README.md`, dispatch `prompts/scrub.md`, then
-   `prompts/scrub-audit.md`, repeating both until the audit returns CLEAN.
+   `templates/bundle-README.md`, apply `prompts/scrub.md`, then
+   `prompts/scrub-audit.md` inline or through authorized analysts, repeating both until the audit returns CLEAN.
    Complete the bundle template's evidence check and reconciliation before
    showing the final scrub log, file list, and privacy and evidence outcomes.
    Archive (`zip -r` or `tar -czf`) only after approval. With the archive
@@ -66,13 +65,13 @@ Create a todo per step. Steps 5–7 run only on their stated condition.
    say scrubbing can miss things: they must review every file before sharing.
 7. **Similar sessions** — when asked. Turn confirmed findings into a
    signature, list candidates by mtime and size, find marker line numbers,
-   dispatch `prompts/similar-session.md` per candidate in parallel, and
+   apply `prompts/similar-session.md` per candidate with authorized
+   delegation only where independent, and
    append report §9.
 
 ## Quick reference
 
-All seven analysts always run. This table says which region to read
-yourself in step 3 and which findings to lead with in the verdict.
+Use this table to choose relevant dimensions in step 3 and lead findings.
 
 | Complaint | Read first, lead with |
 |---|---|

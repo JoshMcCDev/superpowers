@@ -152,12 +152,12 @@ digraph STYLE_GUIDE {
         "Test failed" [shape=ellipse];
         "Read error message" [shape=box];
         "Can reproduce?" [shape=diamond];
-        "git diff HEAD~1" [shape=plaintext];
+        "git diff BASE..HEAD" [shape=plaintext];
         "NEVER ignore errors" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
 
         "Test failed" -> "Read error message";
         "Read error message" -> "Can reproduce?";
-        "Can reproduce?" -> "git diff HEAD~1" [label="yes"];
+        "Can reproduce?" -> "git diff BASE..HEAD" [label="yes"];
 
         // Bad: vague and wrong shapes
         bad_1 [label="Something wrong", shape=box];  // Should be ellipse (state)

@@ -7,7 +7,7 @@ description: Use when you have a spec or requirements for a multi-step task, bef
 
 ## Overview
 
-Write implementation plans for an engineer who has not seen this codebase or this spec. Assume they write idiomatic code in the project's language once they know the exact interface and the exact test, and that they will make a reasonable choice wherever the plan leaves one open. What they cannot know is what you decided: which files, which names and signatures, which values from the spec, which tests prove each task. Document those. Give them the whole plan as bite-sized tasks. DRY. YAGNI. TDD. Frequent commits.
+Write implementation plans for an engineer who has not seen this codebase or this spec. Assume they write idiomatic code in the project's language once they know the exact interface and the exact test, and that they will make a reasonable choice wherever the plan leaves one open. What they cannot know is what you decided: which files, which names and signatures, which values from the spec, which tests prove each task. Document those. Give them the whole plan as bite-sized tasks. DRY. YAGNI. Meaningful proof at the owning layer. Scoped commits within the project workflow.
 
 **Announce at start:** "I'm using the writing-plans skill to create the implementation plan."
 
@@ -51,12 +51,13 @@ independently testable deliverable.
 
 ## Plan Document Header
 
-**Every plan MUST start with this header:**
+**Use this header as a template, adapting it to the active task and project policy:**
 
 ```markdown
 # [Feature Name] Implementation Plan
 
-> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+> **Execution:** Use the authorized inline or delegated workflow. Preserve host
+> permissions, task scope, current owners, and required evidence.
 
 **Goal:** [One sentence describing what this builds]
 
@@ -76,7 +77,7 @@ include this section.]
 
 ## Review Focus
 
-[The five input classes or failure modes the spec implies but no task's
+[The relevant input classes or failure modes the spec implies but no task's
 tests exercise that are most likely to bite a person using this software
 — one line each, naming the input or condition and the behavior a
 reasonable person would expect, most likely first. The spec is a vision
@@ -178,27 +179,24 @@ If you find issues, fix them inline. No need to re-review — just fix and move 
 
 ## Execution Handoff
 
-After saving and self-reviewing the plan, link it for your human partner
-to read. If they have already explicitly supplied an execution method, ask
-them to review the plan and confirm it captures what they want; wait for that
-review before implementation, then use the preserved method. Otherwise, ask
-them to review the plan and choose an execution method before implementation.
+Link the saved plan and state its scope, evidence, dependencies, and unresolved
+choices. A request to plan alone does not authorize dependent implementation.
+When implementation is already authorized, preserve the chosen method and proceed
+within scope; do not add a new confirmation merely because this template has a
+handoff section.
 
-**When no execution method has already been supplied:**
+Inline execution uses `superpowers:executing-plans`. When authorized and useful,
+independent tasks can use `superpowers:subagent-driven-development`. Follow host
+and user rules for delegation and model selection. Ask for an execution choice
+only when it is consequential and unresolved. Keep each task's acceptance and
+proof explicit; a plan is not authority for unrelated work or a new evaluator.
 
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Which execution approach would you prefer?**
+## Conditional reuse decisions
 
-- **Subagent-driven** - A fresh subagent implements each task and a fresh reviewer checks it before the next one starts, then a whole-branch review at the end. Most thorough; costs a fresh context per task and per review.
-- **Native** - I implement every task myself in this session, the way this harness runs work, then one fresh reviewer on the most capable model checks the whole branch. Cheapest and fastest; no independent review until the end. Runs well with a mid-tier session model, since the plan carries the design.
-
-**For this plan I recommend <one of the two>, because <one sentence from the plan: how much the tasks depend on each other's interfaces, how many there are, what a shipped mistake would cost>. Does the plan capture what you want, and which approach should we use?"**
-
-**When an execution method has already been supplied:**
-
-**"Plan complete and saved to `docs/superpowers/plans/<filename>.md`. Please review the plan. Does it capture what you want?"**
-
-**If Subagent-driven chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:subagent-driven-development
-
-**If Native chosen:**
-- **REQUIRED SUB-SKILL:** Use superpowers:executing-plans
+For a nontrivial reusable capability, inspect the existing owner before choosing
+an implementation. Record the need/constraints, candidates and inspected source
+versions, reuse/adapt/build decision and rationale, compatibility unknowns, and
+the smallest useful probe. Follow the project's search-first and crate-selection
+owners when present. A candidate library is not an approved dependency, and
+research does not authorize installation or build-script execution. Skip a survey
+when an established local solution already answers the question.

@@ -1,0 +1,80 @@
+{
+  "frontmatter": [
+    {
+      "skill": "brainstorming",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "diagnosing-superpowers",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "dispatching-parallel-agents",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "executing-plans",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "finishing-a-development-branch",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "receiving-code-review",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "requesting-code-review",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "subagent-driven-development",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "systematic-debugging",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "test-driven-development",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "using-git-worktrees",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "using-superpowers",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "verification-before-completion",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "writing-plans",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    },
+    {
+      "skill": "writing-skills",
+      "exit": 0,
+      "output": "Skill is valid!\n"
+    }
+  ],
+  "missing_relative_links": []
+}

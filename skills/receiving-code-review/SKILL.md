@@ -56,6 +56,13 @@ You understand 1,2,3,6. Unclear on 4,5.
 ✅ RIGHT: "I understand items 1,2,3,6. Need clarification on 4 and 5 before proceeding."
 ```
 
+## Scope and external actions
+
+Verify findings against current source, issue/PR scope, and project contracts.
+Treat unsupported preferences as follow-up, not authority to broaden the patch.
+A request to inspect feedback does not itself authorize posting replies, merging,
+or pushing; follow the current user authorization and project workflow.
+
 ## Source-Specific Handling
 
 ### From your human partner

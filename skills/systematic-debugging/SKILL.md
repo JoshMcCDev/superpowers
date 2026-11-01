@@ -7,7 +7,10 @@ description: Use when encountering any bug, test failure, or unexpected behavior
 
 ## Overview
 
-**Core principle:** ALWAYS find root cause before attempting fixes. Symptom fixes are failure.
+**Core principle:** Investigate before repairing. Use the cheapest observation that
+distinguishes plausible causes, then fix the supported owning cause. Temporary
+containment can be appropriate for corruption or dangerous side effects; label it
+as containment and continue diagnosis.
 
 **Violating the letter of this process is violating the spirit of debugging.**
 
@@ -43,7 +46,8 @@ Use for ANY technical issue:
 
 ## The Four Phases
 
-You MUST complete each phase before proceeding to the next.
+Use these phases as an evidence loop. New observations can send the investigation
+back to an earlier phase; keep the process proportional to the unresolved question.
 
 ### Phase 1: Root Cause Investigation
 
@@ -71,9 +75,9 @@ You MUST complete each phase before proceeding to the next.
 
    **WHEN system has multiple components (CI → build → signing, API → service → database):**
 
-   **BEFORE proposing fixes, add diagnostic instrumentation:**
+   **Inspect retained evidence first; add instrumentation only where it cannot distinguish the plausible causes:**
    ```
-   For EACH component boundary:
+   For the implicated component boundaries:
      - Log what data enters component
      - Log what data exits component
      - Verify environment/config propagation
@@ -117,6 +121,19 @@ You MUST complete each phase before proceeding to the next.
    - Keep tracing up until you find the source
    - Fix at source, not at symptom
 
+### Optional runtime and agent-boundary observations
+
+Choose tools for a named question: native LLDB MCP or CodeLLDB for native/Rust
+stacks and values, debugpy for Python state, strace for process/wait/pipe/system-call
+behavior, or rr for compatible record/replay. Check actual availability; retain
+original logs and exact reproduction identity. Pausing, tracing, or recording may
+change deadlines and scheduling; diagnostic runs do not replace normally timed
+runtime or qualification evidence.
+
+When evidence crosses an agent/tool boundary, use
+[agent-boundary-evidence.md](references/agent-boundary-evidence.md) for focused
+input/output and identity tracing. Preserve existing project evidence owners.
+
 ### Phase 2: Pattern Analysis
 
 **Find the pattern before fixing:**
@@ -126,9 +143,8 @@ You MUST complete each phase before proceeding to the next.
    - What works that's similar to what's broken?
 
 2. **Compare Against References**
-   - If implementing pattern, read reference implementation COMPLETELY
-   - Don't skim - read every line
-   - Understand the pattern fully before applying
+   - Read enough of the current, version-matched reference to resolve the
+     specific uncertainty; understand relevant assumptions before applying it.
 
 3. **Identify Differences**
    - What's different between working and broken?
@@ -150,7 +166,7 @@ You MUST complete each phase before proceeding to the next.
    - Be specific, not vague
 
 2. **Test Minimally**
-   - Make the SMALLEST possible change to test hypothesis
+   - Prefer the smallest observation or disposable experiment that tests the hypothesis
    - One variable at a time
    - Don't fix multiple things at once
 
@@ -173,7 +189,7 @@ You MUST complete each phase before proceeding to the next.
    - Simplest possible reproduction
    - Automated test if possible
    - One-off test script if no framework
-   - MUST have before fixing
+   - Use the smallest authoritative proof layer; preserve missing evidence explicitly
    - Use the `superpowers:test-driven-development` skill for writing proper failing tests
 
 2. **Implement Single Fix**
@@ -189,27 +205,15 @@ You MUST complete each phase before proceeding to the next.
    - Use the `superpowers:verification-before-completion` skill before claiming success
 
 4. **If Fix Doesn't Work**
-   - STOP
-   - Count: How many fixes have you tried?
-   - If < 3: Return to Phase 1, re-analyze with new information
-   - **If ≥ 3: STOP and question the architecture (step 5 below)**
-   - DON'T attempt Fix #4 without architectural discussion
-
-5. **If 3+ Fixes Failed: Question Architecture**
-
-   **Pattern indicating architectural problem:**
-   - Each fix reveals new shared state/coupling/problem in different place
-   - Fixes require "massive refactoring" to implement
-   - Each fix creates new symptoms elsewhere
-
-   **STOP and question fundamentals:**
-   - Is this pattern fundamentally sound?
-   - Are we "sticking with it through sheer inertia"?
-   - Should we refactor architecture vs. continue fixing symptoms?
-
-   **Discuss with your human partner before attempting more fixes**
-
-   This is NOT a failed hypothesis - this is a wrong architecture.
+   - Classify the result as supported, contradicted, or inconclusive.
+   - Stop stacking speculative edits; update the hypothesis from new evidence.
+   - Three equivalent failed fixes without meaningful new evidence are a default
+     checkpoint for [bounded research](references/repeated-failure-research.md).
+     Escalate sooner when repetition is obvious; new evidence can justify more
+     experiments within task scope and budget.
+   - Architecture conclusions require structural evidence such as conflicting
+     owners, unavoidable coupling, or authority violations. Attempt count alone
+     does not establish an architecture defect.
 
 ## Red Flags - STOP and Follow Process
 
@@ -223,12 +227,12 @@ If you catch yourself thinking:
 - "Pattern says X but I'll adapt it differently"
 - "Here are the main problems: [lists fixes without investigation]"
 - Proposing solutions before tracing data flow
-- **"One more fix attempt" (when already tried 2+)**
+- **Repeating an equivalent fix without new evidence**
 - **Each fix reveals new problem in different place**
 
 **ALL of these mean: STOP. Return to Phase 1.**
 
-**If 3+ fixes failed:** Question the architecture (see Phase 4.5)
+**If equivalent fixes repeat without new evidence:** use the bounded research checkpoint.
 
 ## your human partner's Signals You're Doing It Wrong
 
@@ -250,9 +254,9 @@ If you catch yourself thinking:
 | "Just try this first, then investigate" | First fix sets the pattern. Do it right from the start. |
 | "I'll write test after confirming fix works" | Untested fixes don't stick. Test first proves it. |
 | "Multiple fixes at once saves time" | Can't isolate what worked. Causes new bugs. |
-| "Reference too long, I'll adapt the pattern" | Partial understanding guarantees bugs. Read it completely. |
+| "Reference too long, I'll guess" | Read the relevant owner and assumptions; retain unresolved questions explicitly. |
 | "I see the problem, let me fix it" | Seeing symptoms ≠ understanding root cause. |
-| "One more fix attempt" (after 2+ failures) | 3+ failures = architectural problem. Question pattern, don't fix again. |
+| "One more equivalent fix without new evidence" | Pause speculative edits and run bounded research; attempt count is not architecture proof. |
 
 ## Quick Reference
 
@@ -272,7 +276,8 @@ If systematic investigation reveals issue is truly environmental, timing-depende
 3. Implement appropriate handling (retry, timeout, error message)
 4. Add monitoring/logging for future investigation
 
-**But:** 95% of "no root cause" cases are incomplete investigation.
+Missing evidence is an investigation limit, not proof that the environment or
+architecture is at fault. Report what was observed and what remains unknown.
 
 ## Supporting Techniques
 
@@ -281,3 +286,16 @@ These techniques are part of systematic debugging and available in this director
 - **`root-cause-tracing.md`** - Trace bugs backward through call stack to find original trigger
 - **`defense-in-depth.md`** - Add validation at multiple layers after finding root cause
 - **`condition-based-waiting.md`** - Replace arbitrary timeouts with condition polling
+
+## Fixtures and readiness
+
+Use bounded fixtures that retain the behavior relevant to the failure: real
+parser/queue/file or process semantics where those own truth, controlled inputs
+at irrelevant external boundaries. Do not copy an entire dependency or repository
+structure solely to make a mock look realistic. Record what the fixture omits;
+it cannot replace required native/runtime proof.
+
+Wait for operation-specific readiness (an acknowledged state, process result,
+file receipt, or matching event) with a bounded deadline and fresh observations.
+Prefer event-aware waits when available; polling needs a bounded interval and
+clear timeout/cancellation. Arbitrary sleeps are not evidence of readiness.

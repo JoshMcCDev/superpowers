@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# Close one task of an inline plan execution in a single call: run the task's
-# test command, keep its full output in the workspace, print the tail, and —
-# only if the command succeeded — append the completion line to the ledger.
-# A failing command records nothing: the task is not complete.
+# Run a task check and retain every attempt. Successful checks are advisory:
+# the caller must verify acceptance before recording task completion.
 #
 # Usage: task-done PLAN_FILE TASK_NUMBER BASE -- TEST_COMMAND [ARGS...]
-#   BASE is the SHA task-start printed; the completion line records BASE..HEAD.
+#   BASE is the SHA task-start printed; the advisory line records BASE..HEAD.
 # Exit: the test command's exit status.
 set -euo pipefail
 
@@ -18,12 +16,24 @@ plan=$1
 n=$2
 base=$3
 shift 4
+[[ "$n" =~ ^[1-9][0-9]*$ ]] || { echo "invalid task number: $n" >&2; exit 2; }
 sdd="$(cd "$(dirname "$0")/../../subagent-driven-development/scripts" && pwd)"
 
-git rev-parse --verify --quiet "$base" >/dev/null || { echo "bad BASE: $base" >&2; exit 2; }
+git rev-parse --verify --quiet "$base^{commit}" >/dev/null || { echo "bad BASE: $base" >&2; exit 2; }
+git merge-base --is-ancestor "$base" HEAD || { echo "BASE is not an ancestor of HEAD" >&2; exit 2; }
 
-dir=$("$sdd/sdd-workspace" "$plan")
-log="$dir/task-${n}-tests.log"
+dir=$("${BASH:-bash}" "$sdd/sdd-workspace" "$plan")
+attempt=$(mktemp -d "$dir/task-${n}-run.XXXXXX")
+log="$attempt/output.log"
+# Keep the old latest-log path usable without destroying earlier output.
+latest="$dir/task-${n}-tests.log"
+if [ -f "$latest" ] && [ ! -L "$latest" ]; then
+  mv "$latest" "$attempt/previous-output.log"
+fi
+ln -sfn "$log" "$latest"
+trap 'printf "%s\n" "$?" > "$attempt/exit"' EXIT
+trap 'exit 143' TERM
+trap 'exit 130' INT
 ledger="$dir/progress.md"
 
 # Render the command the way a person would type it, for the ledger line.
@@ -41,12 +51,14 @@ rc=0
 
 tail -n 5 "$log"
 if [ "$rc" -ne 0 ]; then
-  echo "task-done: test command exited $rc; Task $n NOT recorded (full output: $log)" >&2
+  echo "task-done: test command exited $rc; Task $n acceptance NOT established (full output: $log)" >&2
   exit "$rc"
 fi
 
 last=$(grep -v '^[[:space:]]*$' "$log" | tail -n 1) || last="(no output)"
 [ -f "$ledger" ] || printf '# SDD ledger — plan: %s\n' "$plan" > "$ledger"
-line="Task $n: complete (commits $(git rev-parse --short=7 "$base")..$(git rev-parse --short=7 HEAD), tests: $cmd → $last)"
+line="Task $n: checks passed (commits $(git rev-parse --short=7 "$base")..$(git rev-parse --short=7 HEAD), tests: $cmd → $last)"
 printf '%s\n' "$line" >> "$ledger"
 echo "ledger: $line"
+
+echo "Acceptance remains caller-owned; raw output: $log"
