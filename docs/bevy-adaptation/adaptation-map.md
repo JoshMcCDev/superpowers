@@ -24,3 +24,7 @@ semantic authority. The initial expected overlap set is debugging, TDD, and
 verification; compare their actual contracts and host loading before thinning.
 File/byte reduction is not measured token savings. Loaded skill-token accounting
 that the host does not expose remains UNKNOWN.
+
+Migration delivery: [Bevy PR #395](https://github.com/JoshMcCDev/bevy-dev-loop/pull/395),
+stacked on the separate guidance repair PR #394. No normal profile activation
+is inferred from the controlled compatibility pilot.

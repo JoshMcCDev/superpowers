@@ -99,7 +99,8 @@ or bypassed. The unrelated normal-home plugin profile was excluded consistently
 from controlled arms. Raw usage fields, failures, timings, prompts and source
 hashes are retained; no monetary or causal savings claim follows.
 
-The Bevy migration PR's evidence record owns the final scenario matrix, footprint
+The [Bevy migration PR #395](https://github.com/JoshMcCDev/bevy-dev-loop/pull/395)
+evidence record owns the final scenario matrix, footprint
 measurements, rollback observations and Gate E/F scope. No normal Codex plugin
 activation or production authority change is part of this work; reviewed installs
 remain an explicit host operation, with tested project fallback when absent.
