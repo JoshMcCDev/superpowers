@@ -1,0 +1,66 @@
+Archive: /tmp/.ctx-mode-pIcCJ0/tmp.DM2sSf88Gs/one.zip
+Format:  zip
+Version: 7.0.1-bevy.3
+Entries: 152
+Skills:  15
+SHA-256: 0bad3b3c6ebda2bb0b0e4478eb594fd2276c89d760d165ca2881434764abf361
+Archive: /tmp/.ctx-mode-pIcCJ0/tmp.DM2sSf88Gs/two.zip
+Format:  zip
+Version: 7.0.1-bevy.3
+Entries: 152
+Skills:  15
+SHA-256: 0bad3b3c6ebda2bb0b0e4478eb594fd2276c89d760d165ca2881434764abf361
+PASS: all 109 archive files match the pinned Git source, metadata included
+PASS: stripped-bit start/done, exact failure, interrupted retry, retained attempts, advisory success
+=== Test: sdd-workspace ===
+  [PASS] sdd-workspace without a plan errors with exit 2
+  [PASS] sdd-workspace with a missing plan file errors with exit 2
+  [PASS] prints <repo-root>/.superpowers/sdd/<plan-basename>
+  [PASS] two plans resolve to two distinct directories
+  [PASS] self-ignoring .gitignore created at .superpowers/sdd/ with '*'
+  [PASS] workspace invisible to git status
+  [PASS] git add -A does not stage the workspace
+  [PASS] task-brief writes its brief under the plan's workspace
+  [PASS] review-package writes its diff under the plan's workspace
+  [PASS] review-package without a plan errors with exit 2
+  [PASS] review-package honors an explicit OUTFILE
+  [PASS] review-package rejects a BASE that is not an ancestor of HEAD with exit 3
+  [PASS] review-package rejects an empty BASE..HEAD range with exit 3
+  [PASS] linked worktree resolves its own distinct workspace
+  [PASS] worktree workspace invisible to git status
+  [PASS] task-brief works with no exec bit on sdd-workspace
+  [PASS] same-basename plans resolve to distinct workspaces
+  [PASS] same-basename plans keep both task briefs intact
+  [PASS] legacy markerless workspace is adopted in place and marked
+  [PASS] owned workspace disambiguates with parent-dir suffix
+  [PASS] conflicting plan leaves the original workspace untouched
+  [PASS] double conflict falls back to a counter suffix
+  [PASS] relative, absolute, and ../ spellings share one workspace and marker
+  [PASS] out-of-repo plan gets a basename slug and an absolute-path marker
+  [PASS] an existing .superpowers/sdd/.gitignore is not overwritten
+
+PASS
+Test: documented pattern finds nested test files (issue #2008)
+  [PASS] documented pattern runs tests and detects pollution
+Test: documented pattern also finds top-level test files
+  [PASS] src/**/*.test.ts matches src/top.test.ts and src/feature/nested.test.ts
+Test: ./-prefixed pattern matches the same files
+  [PASS] leading ./ on the pattern is accepted
+Test: non-matching pattern reports an honest zero
+  [PASS] empty result counts as 0, not 1
+  [PASS] empty result is not certified clean
+  [PASS] custom failure exit preserved
+  [PASS] failed runner is not a clean result
+  [PASS] raw output remains recoverable and visible
+  [PASS] raw log retained
+  [PASS] raw exit retained
+  [PASS] no matches exits incomplete
+  [PASS] preexisting pollution rejects investigation
+  [PASS] preexisting pollution has explicit status
+  [PASS] clean custom runner completes
+  [PASS] symlinked candidate detected or explicitly incomplete
+  [PASS] partial discovery exits incomplete
+  [PASS] discovery error prevents clean claim
+
+All tests passed
+PASS: clean-clone reproducibility, extracted helpers, missing-metadata rejection

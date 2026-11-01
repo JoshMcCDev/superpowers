@@ -1,0 +1,12 @@
+WARN: .agents/architecture/workspace-checks.md: agent instruction file is 26410 bytes; review routing/pruning
+WARN: .agents/repo-map.md: agent instruction file is 21139 bytes; review routing/pruning
+WARN: .agents/rust/crate-selection.md: agent instruction file is 20236 bytes; review routing/pruning
+WARN: .agents/skills/rust-best-practices/references/chapter_01.md: agent instruction file is 25262 bytes; review routing/pruning
+WARN: .agents/workflows/references/rust-validation-tools.md: agent instruction file is 17172 bytes; review routing/pruning
+WARN: docs/gauntlet/acp.md: current doc is 27886 bytes; review semantic split/progressive disclosure
+WARN: docs/gauntlet/harness-recovery.md: current doc is 24667 bytes; review semantic split/progressive disclosure
+WARN: docs/gauntlet/integration-authoring.md: current doc is 25006 bytes; review semantic split/progressive disclosure
+WARN: docs/gauntlet/rust-first-harness-architecture.md: current doc is 52608 bytes; review semantic split/progressive disclosure
+WARN: docs/gauntlet/rust-first-harness-audit.md: current doc is 46534 bytes; review semantic split/progressive disclosure
+WARN: docs/gauntlet/rust-first-harness-migration.md: current doc is 56643 bytes; review semantic split/progressive disclosure
+agent-doc audit: 0 error(s), 11 warning(s)

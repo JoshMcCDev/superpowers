@@ -1,0 +1,30 @@
+{
+  "gate": "E",
+  "scope": "Codex CLI 0.165.0, isolated homes, actual package 7.0.1-bevy.2 and project sources",
+  "decision": "supported for bounded compatibility scenarios; authorize the tested overlay thinning",
+  "source_before": "216b79a356a7b61b06b87eac5506f064d84d7cde",
+  "primary_configurations": [
+    "A",
+    "B",
+    "C",
+    "D2",
+    "D2-fallback"
+  ],
+  "scenario_count_per_configuration": 13,
+  "method": "manual outcome and ordered action review plus independent fixture tests; no semantic score or general performance claim",
+  "remaining_limits": [
+    "resolved serving model/effort not independently exposed",
+    "full global-plugin profile not included",
+    "native qualification deliberately unavailable in its scenario, remains unproven",
+    "MCP published retrieval blocked by host approval; no security changes",
+    "earlier D candidate missed intended TDD owner and was superseded by D2 routing/retests"
+  ],
+  "candidate_file_hashes": {
+    "AGENTS.md": "1e2ef4c4aafcf56d68804e645bfe94d7b13da98f8596837b17b0c05037a710cd",
+    ".agents/skills/systematic-debugging/SKILL.md": "175e679281db08171c7b2c13bf56b62839980a007c5def19de3da2e6adb43440",
+    ".agents/skills/test-driven-development/SKILL.md": "ac2cb0046e9f8820b9b6deecaf66a83862e518b532c94f2b799fcc4227894fd7",
+    ".agents/skills/verification-before-completion/SKILL.md": "778e5718fdaf63fe6696c932240373f543769dcd5d407e10ccb6a3af1c732c1b",
+    ".agents/workflows/plugin-cooperation.md": "190fc31974e312c51a8b429e5517a85b0efc0001283c076ae5d07ed5f44bc6c4"
+  },
+  "final_identity_only_difference": "Rollback revision expanded from its verified abbreviation to full source SHA; final tree will be tested again."
+}

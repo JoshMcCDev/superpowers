@@ -1,0 +1,80 @@
+{
+  "payload_source": "2116b3d1575b7f0f682fcf03e5f8ee72276044f1",
+  "commands": [
+    {
+      "command": [
+        "bash",
+        "tests/claude-code/test-task-helper-reliability.sh"
+      ],
+      "exit": 0,
+      "log": "test-task-helper-reliability-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/systematic-debugging/test-find-polluter.sh"
+      ],
+      "exit": 0,
+      "log": "test-find-polluter-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/claude-code/test-executing-plans-scripts.sh"
+      ],
+      "exit": 0,
+      "log": "test-executing-plans-scripts-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/claude-code/test-sdd-workspace.sh"
+      ],
+      "exit": 0,
+      "log": "test-sdd-workspace-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/codex/test-package-codex-plugin.sh"
+      ],
+      "exit": 0,
+      "log": "test-package-codex-plugin-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/codex/test-marketplace-manifest.sh"
+      ],
+      "exit": 0,
+      "log": "test-marketplace-manifest-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/claude-code/test-worktree-path-policy.sh"
+      ],
+      "exit": 0,
+      "log": "test-worktree-path-policy-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/diagnosing-superpowers/test-skill-structure.sh"
+      ],
+      "exit": 0,
+      "log": "test-skill-structure-closeout.log"
+    },
+    {
+      "command": [
+        "bash",
+        "tests/codex/test-self-contained-package.sh"
+      ],
+      "exit": 0,
+      "log": "test-self-contained-package-closeout.log"
+    }
+  ],
+  "skill_frontmatters": 15,
+  "archive_file_comparisons": 109,
+  "package_sha256": "0bad3b3c6ebda2bb0b0e4478eb594fd2276c89d760d165ca2881434764abf361"
+}

@@ -1,11 +1,11 @@
 # Bevy Dev Loop adaptation of Superpowers
 
-The actual shared skills and selected helpers are adapted on
-`feat/bevy-dev-loop-integration` in `JoshMcCDev/superpowers`, based on upstream
-`2ce8aa15d05bd57213e6f746f953aafb7ded7a8b`. The local checkout is
-`/home/josh/orca/superpowers-audit`. Changes remain uncommitted on that branch;
-a retained local snapshot ref identifies the package inputs. No remote push,
-normal plugin installation, or Bevy skill deletion was performed.
+The shared skills and selected helpers are adapted on
+`feat/bevy-dev-loop-integration` in `JoshMcCDev/superpowers`, initially based on
+upstream `2ce8aa15d05bd57213e6f746f953aafb7ded7a8b`. The current source/package
+pin, clean-clone checks, and migration scope are in the
+[hardening record](hardening.md); the original [validation record](validation.md)
+and `evidence/` describe the initial adaptation and remain historical.
 
 The maintained plan and file comparison are in Bevy Dev Loop's
 `debugging-skill-guidance` worktree under `docs/research/`. This is an adaptation

@@ -1,0 +1,12 @@
+{
+  "migration_commit": "1d8444ebc547f1fe1c2f58d519e108dfa21e67e2",
+  "restored_guidance_commit": "216b79a356a7b61b06b87eac5506f064d84d7cde",
+  "method": "git revert --no-commit in disposable clone",
+  "byte_verified_paths": [
+    "AGENTS.md",
+    ".agents/skills/systematic-debugging/SKILL.md",
+    ".agents/skills/test-driven-development/SKILL.md",
+    ".agents/skills/verification-before-completion/SKILL.md"
+  ],
+  "new_route_removed": true
+}
