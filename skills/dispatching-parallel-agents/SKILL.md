@@ -171,5 +171,5 @@ Agent 3 → Fix tool-approval-race-conditions.test.ts
 After agents return:
 1. **Review each summary** - Understand what changed
 2. **Check for conflicts** - Did agents edit same code?
-3. **Run full suite** - Verify all fixes work together
+3. **Run affected integration checks** - Use required project proof for the shared boundaries; report unrun broader criteria
 4. **Spot check** - Agents can make systematic errors

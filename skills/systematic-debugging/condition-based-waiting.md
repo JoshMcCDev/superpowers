@@ -64,13 +64,13 @@ async function waitFor<T>(
   description: string,
   timeoutMs = 5000
 ): Promise<T> {
-  const startTime = Date.now();
+  const startTime = performance.now();
 
   while (true) {
     const result = condition();
     if (result) return result;
 
-    if (Date.now() - startTime > timeoutMs) {
+    if (performance.now() - startTime > timeoutMs) {
       throw new Error(`Timeout waiting for ${description} after ${timeoutMs}ms`);
     }
 
@@ -84,7 +84,7 @@ See `condition-based-waiting-example.ts` in this directory for complete implemen
 ## Common Mistakes
 
 **❌ Polling too fast:** `setTimeout(check, 1)` - wastes CPU
-**✅ Fix:** Poll every 10ms
+**✅ Fix:** Prefer event notification; otherwise choose a bounded interval appropriate to the operation, not a universal 10ms rule.
 
 **❌ No timeout:** Loop forever if condition never met
 **✅ Fix:** Always include timeout with clear error

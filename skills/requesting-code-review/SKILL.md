@@ -26,7 +26,8 @@ otherwise perform a separate scoped review pass. Catch issues before they cascad
 
 **1. Get git SHAs:**
 ```bash
-BASE_SHA=$(git rev-parse HEAD~1)  # or: git merge-base origin/main HEAD
+# Use the task-start BASE; for a whole PR, confirm its actual target branch.
+BASE_SHA=$(git merge-base <verified-target-ref> HEAD)
 HEAD_SHA=$(git rev-parse HEAD)
 ```
 

@@ -2,10 +2,8 @@
 #
 # Package the Superpowers Codex plugin as a rootless archive for portal upload.
 #
-# The Codex portal artifact differs from the old openai/plugins sync flow:
-# it is a standalone archive, but it still needs the OpenAI-owned
-# skills/*/agents/openai.yaml metadata that used to be preserved from the
-# destination plugin repo. Seed that metadata from a prior official package.
+# Skills and reviewed UI metadata default to the same pinned source revision.
+# A prior-package metadata override is optional and must be identified separately.
 
 set -euo pipefail
 
@@ -30,10 +28,9 @@ Options:
   --format FORMAT          Archive format: zip or tar.gz. Default: zip.
                            If --output ends in .zip, .tar.gz, or .tgz, that
                            extension is used when --format is omitted.
-  --metadata-source PATH   Prior official package directory, .zip, or .tar.gz used to
-                           seed skills/*/agents/openai.yaml.
-                           Default: ../_tmp/sup-codex-packaging/superpowers,
-                           falling back to superpowers.zip, then superpowers.tar.gz
+  --metadata-source PATH   Explicit metadata directory, .zip, or .tar.gz override.
+                           Default: reviewed skills/*/agents/openai.yaml
+                           from the same --ref as the packaged skills.
   --ref REF                Git ref to package. Default: HEAD.
   --allow-dirty            Permit a dirty working tree. The archive still uses --ref.
   --keep-stage             Print and keep the temporary staging directory.
@@ -153,16 +150,11 @@ if [[ "$ALLOW_DIRTY" -ne 1 ]]; then
   fi
 fi
 
+# With no override, package reviewed metadata from the same Git revision as skills.
+# No prior machine-local package is required.
+USE_SOURCE_METADATA=0
 if [[ -z "$METADATA_SOURCE" ]]; then
-  if [[ -d "$REPO_ROOT/../_tmp/sup-codex-packaging/superpowers" ]]; then
-    METADATA_SOURCE="$REPO_ROOT/../_tmp/sup-codex-packaging/superpowers"
-  elif [[ -f "$REPO_ROOT/../_tmp/sup-codex-packaging/superpowers.zip" ]]; then
-    METADATA_SOURCE="$REPO_ROOT/../_tmp/sup-codex-packaging/superpowers.zip"
-  elif [[ -f "$REPO_ROOT/../_tmp/sup-codex-packaging/superpowers.tar.gz" ]]; then
-    METADATA_SOURCE="$REPO_ROOT/../_tmp/sup-codex-packaging/superpowers.tar.gz"
-  else
-    die "no metadata source found; pass --metadata-source <prior package dir, zip, or tar.gz>"
-  fi
+  USE_SOURCE_METADATA=1
 fi
 
 WORK_DIR="$(mktemp -d "${TMPDIR:-/tmp}/superpowers-codex-package.XXXXXX")"
@@ -228,7 +220,11 @@ prepare_metadata_root() {
     die "metadata source does not contain a skills/ directory: $source"
 }
 
-METADATA_ROOT="$(prepare_metadata_root "$METADATA_SOURCE")"
+if [[ "$USE_SOURCE_METADATA" -eq 1 ]]; then
+  METADATA_ROOT="$STAGE"
+else
+  METADATA_ROOT="$(prepare_metadata_root "$METADATA_SOURCE")"
+fi
 
 # Pin tar.umask and extract with -p so staged modes are canonical 755/644
 # regardless of the builder's git config or process umask.
@@ -269,7 +265,9 @@ while IFS= read -r skill_dir; do
   fi
 
   mkdir -p "$skill_dir/agents"
-  cp "$metadata_file" "$skill_dir/agents/openai.yaml"
+  if [[ "$metadata_file" != "$skill_dir/agents/openai.yaml" ]]; then
+    cp "$metadata_file" "$skill_dir/agents/openai.yaml"
+  fi
 done < <(find "$STAGE/skills" -mindepth 1 -maxdepth 1 -type d -print | sort)
 
 if [[ "$missing_metadata" -ne 0 ]]; then

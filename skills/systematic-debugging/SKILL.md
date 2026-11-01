@@ -286,3 +286,16 @@ These techniques are part of systematic debugging and available in this director
 - **`root-cause-tracing.md`** - Trace bugs backward through call stack to find original trigger
 - **`defense-in-depth.md`** - Add validation at multiple layers after finding root cause
 - **`condition-based-waiting.md`** - Replace arbitrary timeouts with condition polling
+
+## Fixtures and readiness
+
+Use bounded fixtures that retain the behavior relevant to the failure: real
+parser/queue/file or process semantics where those own truth, controlled inputs
+at irrelevant external boundaries. Do not copy an entire dependency or repository
+structure solely to make a mock look realistic. Record what the fixture omits;
+it cannot replace required native/runtime proof.
+
+Wait for operation-specific readiness (an acknowledged state, process result,
+file receipt, or matching event) with a bounded deadline and fresh observations.
+Prefer event-aware waits when available; polling needs a bounded interval and
+clear timeout/cancellation. Arbitrary sleeps are not evidence of readiness.

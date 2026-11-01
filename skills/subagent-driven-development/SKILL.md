@@ -279,23 +279,20 @@ round writes, and your memory of it does not survive compaction.
 
 ### 5. Complete the task
 
-When the review comes back clean — or every open finding is parked with a
-ruling at the cap — append the completion line to the ledger in the same
-message as your other bookkeeping:
+Inspect the actual acceptance evidence, not only a report or helper result.
+Record `Task <N>: complete` only when the required criteria are proven and
+supported findings are resolved. A rejected finding needs an evidence-backed
+ruling; a genuine deferred acceptance defect remains incomplete.
 
-- `Task <N>: complete (commits <base7>..<head7>, review clean)`
-- `Task <N>: complete (commits <base7>..<head7>, <K> parked)` after a
-  tripped breaker
-
-Then mark the todo complete and move on. Never move to the next task while
-the review has open Critical/Important issues that are neither fixed nor
-parked-with-ruling at the cap.
+At a retry cap, record reviewed-but-unresolved findings and stop dependent work.
+The cap controls spending; it grants neither a validation waiver nor completion.
+Continue independent authorized tasks and report the missing proof or decision.
 
 ## Final Review
 
 When every task is complete, read
 [references/final-review.md](references/final-review.md) and follow it. It
-covers the whole-branch review, its single fix wave, and how you finish.
+covers whole-branch review, scoped repairs, and evidence-preserving finish.
 
 ## Common Rationalizations
 

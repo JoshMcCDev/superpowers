@@ -31,7 +31,7 @@ if [ -e "$marker" ] || [ -L "$marker" ]; then
 fi
 logs=$(mktemp -d "${TMPDIR:-/tmp}/superpowers-polluter.XXXXXX")
 echo "Raw logs: $logs"
-if ! find . -type f \( -path "./$pattern" -o -path "./${pattern//\*\*\//}" \) -print0 2> "$logs/discovery.log" | sort -zu > "$logs/candidates.paths"; then
+if ! find . \( -type f -o -type l \) \( -path "./$pattern" -o -path "./${pattern//\*\*\//}" \) -print0 2> "$logs/discovery.log" | sort -zu > "$logs/candidates.paths"; then
   echo "INCOMPLETE: candidate discovery failed; see $logs/discovery.log" >&2
   exit 2
 fi
@@ -47,6 +47,10 @@ fi
 count=0
 for file in "${tests[@]}"; do
   count=$((count + 1))
+  if [ -L "$file" ] && [ ! -f "$file" ]; then
+    echo "INCOMPLETE: non-file or dangling candidate symlink: $file" >&2
+    exit 2
+  fi
   log="$logs/$count.log"
   echo "[$count/${#tests[@]}] Testing: $file"
   printf '%s\n' "$file" > "$logs/$count.path"

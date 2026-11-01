@@ -1,0 +1,3 @@
+interface:
+  display_name: "Diagnosing Superpowers"
+  short_description: "Inspect retained agent sessions and evidence for workflow failures"

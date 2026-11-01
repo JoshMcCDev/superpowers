@@ -3,7 +3,7 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
-SCRIPT_UNDER_TEST="$REPO_ROOT/skills/systematic-debugging/find-polluter.sh"
+SCRIPT_UNDER_TEST=${1:-"$REPO_ROOT/skills/systematic-debugging/find-polluter.sh"}
 
 FAILURES=0
 TEST_ROOT="$(mktemp -d)"
@@ -126,7 +126,28 @@ chmod +x "$PROJECT/bin/clean"
 OUTPUT="$(cd "$PROJECT" && "$SCRIPT_UNDER_TEST" pollution.marker 'src/*spaces*' -- "$PROJECT/bin/clean" 2>&1)"
 assert_contains "$OUTPUT" 'No polluter found' 'clean custom runner completes'
 
+# Ordinary clean candidate plus a symlinked polluter must not report clean.
+setup_project
+printf 'clean' > "$PROJECT/src/a.test.ts"
+printf 'touch pollution.marker\n' > "$TEST_ROOT/polluter-body"
+ln -s "$TEST_ROOT/polluter-body" "$PROJECT/src/z.test.ts"
+cat > "$PROJECT/bin/symlink-runner" <<'RUNNER'
+#!/usr/bin/env bash
+[ ! -L "$1" ] || bash "$1"
+RUNNER
+chmod +x "$PROJECT/bin/symlink-runner"
+set +e
+OUTPUT="$(cd "$PROJECT" && "$SCRIPT_UNDER_TEST" pollution.marker 'src/*.test.ts' -- "$PROJECT/bin/symlink-runner" 2>&1)"
+RC=$?
+set -e
+if { [ "$RC" -eq 1 ] && [[ "$OUTPUT" == *'FOUND POLLUTER'* ]]; } || { [ "$RC" -ne 0 ] && [[ "$OUTPUT" == *'INCOMPLETE'* ]]; }; then
+  pass 'symlinked candidate detected or explicitly incomplete'
+else
+  fail 'symlinked polluter omitted from clean discovery'
+fi
+
 # A partial discovery must not establish a clean result.
+rm -f "$PROJECT/pollution.marker"
 cat > "$PROJECT/bin/find" <<'DISCOVERY'
 #!/usr/bin/env bash
 printf './src/top.test.ts\0'

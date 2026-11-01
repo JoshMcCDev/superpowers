@@ -190,3 +190,13 @@ independent tasks can use `superpowers:subagent-driven-development`. Follow host
 and user rules for delegation and model selection. Ask for an execution choice
 only when it is consequential and unresolved. Keep each task's acceptance and
 proof explicit; a plan is not authority for unrelated work or a new evaluator.
+
+## Conditional reuse decisions
+
+For a nontrivial reusable capability, inspect the existing owner before choosing
+an implementation. Record the need/constraints, candidates and inspected source
+versions, reuse/adapt/build decision and rationale, compatibility unknowns, and
+the smallest useful probe. Follow the project's search-first and crate-selection
+owners when present. A candidate library is not an approved dependency, and
+research does not authorize installation or build-script execution. Skip a survey
+when an established local solution already answers the question.

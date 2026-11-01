@@ -231,11 +231,15 @@ the claim. If any item is missing, the task is not complete: finish it.
 Run this skill's `scripts/task-done PLAN_FILE N BASE -- <test command>`
 with the test command the brief names for the whole task. It runs the
 tests, keeps the full output in the workspace, prints the tail, and — only
-if they pass — appends the completion line to the ledger:
+if they pass — appends an advisory check line to the ledger:
 
-`Task <N>: complete (commits <base7>..<head7>, tests: <command> → <result>)`
+`Task <N>: checks passed (commits <base7>..<head7>, tests: <command> → <result>)`
 
-A failing run records no completion. A successful command is only its own
+Only the executor records `Task <N>: complete` after inspecting every acceptance
+criterion and required evidence. A helper cannot decide that status.
+
+Every attempt retains raw output and exit status, including failed/interrupted
+runs; retries do not overwrite earlier evidence. A failing run records no completion. A successful command is only its own
 result: check the full task acceptance and required evidence before marking the
 task complete. A ledger is a working aid, not qualification authority.
 

@@ -41,3 +41,8 @@ If your harness appears here, read its reference file for special instructions:
 - Antigravity: `references/antigravity-tools.md`
 - Hermes Agent: `references/hermes-tools.md`
 - Muse: `references/muse-tools.md`
+
+When an optional capability affects the next decision, read
+[tool discovery and evidence](references/tool-discovery-and-evidence.md).
+For nontrivial reuse choices, planning owns the bounded reuse record; tool
+availability is not dependency approval.

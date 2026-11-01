@@ -82,18 +82,18 @@ PLAN
         fail "task-start writes the brief file"
     fi
 
-    # --- task-done: records a passing task ---
+    # --- task-done: records a passing check ---
     ( cd "$repo" && echo x > work.txt && git add work.txt && git "${git_id[@]}" commit -qm "task 1" )
     local head
     head="$(cd "$repo" && git rev-parse HEAD)"
     out="$(cd "$repo" && "$EP_SCRIPTS/task-done" plan.md 1 "$base" -- sh -c 'echo "Ran 3 tests"; echo OK')"
     rc=$?
     local ledger="$repo/.superpowers/sdd/plan/progress.md"
-    local expected="Task 1: complete (commits ${base:0:7}..${head:0:7}, tests: sh -c 'echo \"Ran 3 tests\"; echo OK' → OK)"
+    local expected="Task 1: checks passed (commits ${base:0:7}..${head:0:7}, tests: sh -c 'echo \"Ran 3 tests\"; echo OK' → OK)"
     if [[ -f "$ledger" ]] && grep -qF "$expected" "$ledger"; then
-        pass "task-done appends the completion line with commit range and test result"
+        pass "task-done appends the advisory check line with commit range and test result"
     else
-        fail "task-done appends the completion line with commit range and test result"
+        fail "task-done appends the advisory check line with commit range and test result"
         echo "    expected: $expected"
         echo "    ledger:"; sed 's/^/      /' "$ledger" 2>/dev/null || echo "      (missing)"
     fi
@@ -117,10 +117,10 @@ PLAN
     else
         fail "task-done exits non-zero when the test command fails"
     fi
-    if ! grep -q "Task 2: complete" "$ledger"; then
-        pass "task-done does not record a failing task as complete"
+    if ! grep -q "Task 2: checks passed" "$ledger"; then
+        pass "task-done does not record a failing task as passed"
     else
-        fail "task-done does not record a failing task as complete"
+        fail "task-done does not record a failing task as passed"
     fi
     if [[ "$out" == *"FAILED"* ]]; then
         pass "task-done shows the failing output"
@@ -129,7 +129,7 @@ PLAN
         echo "    got: $out"
     fi
 
-    # --- task-done: records a passing task whose test command prints nothing ---
+    # --- task-done: records a passing check whose test command prints nothing ---
     # https://github.com/obra/superpowers/issues/2385 -- under `set -euo
     # pipefail`, the ledger's `grep -v '^[[:space:]]*$' log | tail -n 1`
     # exits 1 on an empty/blank log, which used to abort the whole script
@@ -145,11 +145,11 @@ PLAN
         fail "task-done exits 0 when a passing test command prints nothing (got rc=$rc)"
         echo "    got: $out"
     fi
-    local expected2="Task 2: complete (commits ${head:0:7}..${head2:0:7}, tests: true → (no output))"
+    local expected2="Task 2: checks passed (commits ${head:0:7}..${head2:0:7}, tests: true → (no output))"
     if [[ -f "$ledger" ]] && grep -qF "$expected2" "$ledger"; then
-        pass "task-done records a passing task that printed no output"
+        pass "task-done records a passing check that printed no output"
     else
-        fail "task-done records a passing task that printed no output"
+        fail "task-done records a passing check that printed no output"
         echo "    expected: $expected2"
         echo "    ledger:"; sed 's/^/      /' "$ledger" 2>/dev/null || echo "      (missing)"
     fi
@@ -162,7 +162,7 @@ PLAN
     chmod -x "$packaged/subagent-driven-development/scripts/sdd-workspace"
     rc=0
     out="$(cd "$repo" && bash "$packaged/executing-plans/scripts/task-done" plan.md 3 "$head2" -- true 2>&1)" || rc=$?
-    if [[ "$rc" -eq 0 ]] && grep -qF 'Task 3: complete' "$ledger"; then
+    if [[ "$rc" -eq 0 ]] && grep -qF 'Task 3: checks passed' "$ledger"; then
         pass "task-done works when packaged sdd-workspace loses its executable bit"
     else
         fail "task-done works when packaged sdd-workspace loses its executable bit (got rc=$rc)"
