@@ -82,7 +82,7 @@ Skip any step = lying, not verifying
 | "Linter passed" | Linter ≠ compiler |
 | "Agent said success" | Verify independently |
 | "I'm tired" | Exhaustion ≠ excuse |
-| "Partial check is enough" | Partial proves nothing |
+| "Focused GREEN proves everything" | It proves only the covered claim; unmet acceptance stays incomplete |
 | "Different words so rule doesn't apply" | Spirit over letter |
 
 ## Key Patterns

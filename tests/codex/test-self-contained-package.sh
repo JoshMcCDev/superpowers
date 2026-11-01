@@ -26,6 +26,7 @@ print(f'PASS: all {count} archive files match the pinned Git source, metadata in
 PY
 unzip -q "$tmp/one.zip" -d "$tmp/extracted"
 bash "$root/tests/claude-code/test-task-helper-reliability.sh" "$tmp/extracted"
+bash "$root/tests/claude-code/test-sdd-workspace.sh" "$tmp/extracted"
 bash "$root/tests/systematic-debugging/test-find-polluter.sh" "$tmp/extracted/skills/systematic-debugging/find-polluter.sh"
 # A source with missing metadata must fail; no implicit machine-local fallback.
 metadata=$(find "$tmp/source/skills" -path '*/agents/openai.yaml' -print -quit)

@@ -1,6 +1,6 @@
 {
   "name": "superpowers",
-  "version": "7.0.1-bevy.2",
+  "version": "7.0.1-bevy.3",
   "description": "Superpowers workflows adapted for project-owned proof, scoped validation, and Bevy Dev Loop development.",
   "author": {
     "name": "Jesse Vincent",

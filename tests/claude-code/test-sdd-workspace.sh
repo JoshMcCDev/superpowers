@@ -5,7 +5,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+REPO_ROOT=${1:-$(cd "$SCRIPT_DIR/../.." && pwd)}
 SDD_SCRIPTS="$REPO_ROOT/skills/subagent-driven-development/scripts"
 
 FAILURES=0
@@ -64,7 +64,7 @@ PLAN
 
     # --- argument validation ---
     local rc=0
-    (cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" >/dev/null 2>&1) || rc=$?
+    (cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" >/dev/null 2>&1) || rc=$?
     if [[ "$rc" -eq 2 ]]; then
         pass "sdd-workspace without a plan errors with exit 2"
     else
@@ -73,7 +73,7 @@ PLAN
     fi
 
     rc=0
-    (cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" no-such-plan.md >/dev/null 2>&1) || rc=$?
+    (cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" no-such-plan.md >/dev/null 2>&1) || rc=$?
     if [[ "$rc" -eq 2 ]]; then
         pass "sdd-workspace with a missing plan file errors with exit 2"
     else
@@ -83,8 +83,8 @@ PLAN
 
     # --- per-plan resolution ---
     local dir_a dir_b
-    dir_a="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" plan-a.md)"
-    dir_b="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" plan-b.md)"
+    dir_a="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" plan-a.md)"
+    dir_b="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" plan-b.md)"
 
     if [[ "$dir_a" == "$repo/.superpowers/sdd/plan-a" ]]; then
         pass "prints <repo-root>/.superpowers/sdd/<plan-basename>"
@@ -131,7 +131,7 @@ PLAN
 
     # --- task-brief lands in its plan's directory ---
     local brief_out brief_path
-    brief_out="$(cd "$repo" && "$SDD_SCRIPTS/task-brief" plan-a.md 1)"
+    brief_out="$(cd "$repo" && bash "$SDD_SCRIPTS/task-brief" plan-a.md 1)"
     brief_path="$(printf '%s\n' "$brief_out" | sed -n 's/^wrote \(.*\): [0-9][0-9]* lines$/\1/p')"
     if [[ "$brief_path" == "$repo/.superpowers/sdd/plan-a/task-1-brief.md" ]]; then
         pass "task-brief writes its brief under the plan's workspace"
@@ -147,7 +147,7 @@ PLAN
         && printf 'y\n' > f && git add f \
         && git "${git_id[@]}" commit -qm c2 )
     local rp_out rp_path
-    rp_out="$(cd "$repo" && "$SDD_SCRIPTS/review-package" plan-a.md HEAD~1 HEAD)"
+    rp_out="$(cd "$repo" && bash "$SDD_SCRIPTS/review-package" plan-a.md HEAD~1 HEAD)"
     rp_path="$(printf '%s\n' "$rp_out" | sed -n 's/^wrote \(.*\): [0-9].*$/\1/p')"
     case "$rp_path" in
         "$repo/.superpowers/sdd/plan-a/review-"*.diff)
@@ -159,7 +159,7 @@ PLAN
     esac
 
     rc=0
-    (cd "$repo" && "$SDD_SCRIPTS/review-package" HEAD~1 HEAD >/dev/null 2>&1) || rc=$?
+    (cd "$repo" && bash "$SDD_SCRIPTS/review-package" HEAD~1 HEAD >/dev/null 2>&1) || rc=$?
     if [[ "$rc" -eq 2 ]]; then
         pass "review-package without a plan errors with exit 2"
     else
@@ -168,7 +168,7 @@ PLAN
     fi
 
     local rp_explicit
-    rp_explicit="$(cd "$repo" && "$SDD_SCRIPTS/review-package" plan-a.md HEAD~1 HEAD "$TEST_ROOT/explicit.diff")"
+    rp_explicit="$(cd "$repo" && bash "$SDD_SCRIPTS/review-package" plan-a.md HEAD~1 HEAD "$TEST_ROOT/explicit.diff")"
     if [[ -s "$TEST_ROOT/explicit.diff" && "$rp_explicit" == *"$TEST_ROOT/explicit.diff"* ]]; then
         pass "review-package honors an explicit OUTFILE"
     else
@@ -181,7 +181,7 @@ PLAN
     divergent="$(cd "$repo" && git "${git_id[@]}" commit-tree 'HEAD~1^{tree}' -p 'HEAD~1' -m divergent)"
     rc=0
     local guard_err
-    guard_err="$(cd "$repo" && "$SDD_SCRIPTS/review-package" plan-a.md "$divergent" HEAD 2>&1 >/dev/null)" || rc=$?
+    guard_err="$(cd "$repo" && bash "$SDD_SCRIPTS/review-package" plan-a.md "$divergent" HEAD 2>&1 >/dev/null)" || rc=$?
     if [[ "$rc" -eq 3 && "$guard_err" == *"not a descendant"* ]]; then
         pass "review-package rejects a BASE that is not an ancestor of HEAD with exit 3"
     else
@@ -191,7 +191,7 @@ PLAN
     fi
 
     rc=0
-    guard_err="$(cd "$repo" && "$SDD_SCRIPTS/review-package" plan-a.md HEAD HEAD 2>&1 >/dev/null)" || rc=$?
+    guard_err="$(cd "$repo" && bash "$SDD_SCRIPTS/review-package" plan-a.md HEAD HEAD 2>&1 >/dev/null)" || rc=$?
     if [[ "$rc" -eq 3 && "$guard_err" == *"empty commit range"* ]]; then
         pass "review-package rejects an empty BASE..HEAD range with exit 3"
     else
@@ -206,7 +206,7 @@ PLAN
     local wt_root wt_dir
     wt_root="$(cd "$wt" && git rev-parse --show-toplevel)"
     wt_root="$(physical_path "$wt_root")"
-    wt_dir="$(cd "$wt" && "$SDD_SCRIPTS/sdd-workspace" plan-a.md)"
+    wt_dir="$(cd "$wt" && bash "$SDD_SCRIPTS/sdd-workspace" plan-a.md)"
     if [[ "$wt_dir" == "$wt_root/.superpowers/sdd/plan-a" && "$wt_dir" != "$dir_a" ]]; then
         pass "linked worktree resolves its own distinct workspace"
     else
@@ -258,8 +258,8 @@ Beta-only requirement text.
 PLAN
 
     local dir_alpha dir_beta
-    dir_alpha="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" docs/alpha/plan.md)"
-    dir_beta="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" docs/beta/plan.md)"
+    dir_alpha="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" docs/alpha/plan.md)"
+    dir_beta="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" docs/beta/plan.md)"
     if [[ "$dir_alpha" != "$dir_beta" ]]; then
         pass "same-basename plans resolve to distinct workspaces"
     else
@@ -268,8 +268,8 @@ PLAN
         echo "    beta:  $dir_beta"
     fi
 
-    ( cd "$repo" && "$SDD_SCRIPTS/task-brief" docs/alpha/plan.md 1 >/dev/null )
-    ( cd "$repo" && "$SDD_SCRIPTS/task-brief" docs/beta/plan.md 1 >/dev/null )
+    ( cd "$repo" && bash "$SDD_SCRIPTS/task-brief" docs/alpha/plan.md 1 >/dev/null )
+    ( cd "$repo" && bash "$SDD_SCRIPTS/task-brief" docs/beta/plan.md 1 >/dev/null )
     if grep -q "Alpha-only requirement text." "$dir_alpha/task-1-brief.md" 2>/dev/null \
         && grep -q "Beta-only requirement text." "$dir_beta/task-1-brief.md" 2>/dev/null; then
         pass "same-basename plans keep both task briefs intact"
@@ -284,7 +284,7 @@ PLAN
     mkdir -p "$repo/.superpowers/sdd/foo"
     printf 'ledger\n' > "$repo/.superpowers/sdd/foo/progress.md"
     local dir_foo
-    dir_foo="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" foo.md)"
+    dir_foo="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" foo.md)"
     if [[ "$dir_foo" == "$repo/.superpowers/sdd/foo" \
         && -f "$dir_foo/progress.md" \
         && "$(cat "$dir_foo/plan-path" 2>/dev/null)" == "foo.md" ]]; then
@@ -301,7 +301,7 @@ PLAN
     printf 'somewhere-else/bar.md\n' > "$repo/.superpowers/sdd/bar/plan-path"
     printf 'other ledger\n' > "$repo/.superpowers/sdd/bar/progress.md"
     local dir_bar
-    dir_bar="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" bar.md)"
+    dir_bar="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" bar.md)"
     if [[ "$dir_bar" == "$repo/.superpowers/sdd/bar-repo" \
         && "$(cat "$dir_bar/plan-path" 2>/dev/null)" == "bar.md" ]]; then
         pass "owned workspace disambiguates with parent-dir suffix"
@@ -322,7 +322,7 @@ PLAN
     printf 'one/baz.md\n' > "$repo/.superpowers/sdd/baz/plan-path"
     printf 'two/baz.md\n' > "$repo/.superpowers/sdd/baz-repo/plan-path"
     local dir_baz
-    dir_baz="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" baz.md)"
+    dir_baz="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" baz.md)"
     if [[ "$dir_baz" == "$repo/.superpowers/sdd/baz-repo-2" \
         && "$(cat "$dir_baz/plan-path" 2>/dev/null)" == "baz.md" ]]; then
         pass "double conflict falls back to a counter suffix"
@@ -333,9 +333,9 @@ PLAN
 
     # --- Same plan spelled differently resolves to one workspace ---
     local dir_rel dir_abs dir_dotdot
-    dir_rel="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" docs/alpha/plan.md)"
-    dir_abs="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" "$repo/docs/alpha/plan.md")"
-    dir_dotdot="$(cd "$repo/docs/beta" && "$SDD_SCRIPTS/sdd-workspace" ../alpha/plan.md)"
+    dir_rel="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" docs/alpha/plan.md)"
+    dir_abs="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" "$repo/docs/alpha/plan.md")"
+    dir_dotdot="$(cd "$repo/docs/beta" && bash "$SDD_SCRIPTS/sdd-workspace" ../alpha/plan.md)"
     if [[ "$dir_rel" == "$dir_abs" && "$dir_rel" == "$dir_dotdot" \
         && "$(cat "$dir_rel/plan-path" 2>/dev/null)" == "docs/alpha/plan.md" ]]; then
         pass "relative, absolute, and ../ spellings share one workspace and marker"
@@ -352,7 +352,7 @@ PLAN
     printf '# Remote\n\n## Task 1: Remote\n\nRemote.\n' > "$TEST_ROOT/outside/remote-plan.md"
     local outside_abs dir_out
     outside_abs="$(cd "$TEST_ROOT/outside" && pwd -P)/remote-plan.md"
-    dir_out="$(cd "$repo" && "$SDD_SCRIPTS/sdd-workspace" "$TEST_ROOT/outside/remote-plan.md")"
+    dir_out="$(cd "$repo" && bash "$SDD_SCRIPTS/sdd-workspace" "$TEST_ROOT/outside/remote-plan.md")"
     if [[ "$dir_out" == "$repo/.superpowers/sdd/remote-plan" \
         && "$(cat "$dir_out/plan-path" 2>/dev/null)" == "$outside_abs" ]]; then
         pass "out-of-repo plan gets a basename slug and an absolute-path marker"
@@ -371,7 +371,7 @@ PLAN
     printf '%s\n' "$own_ignore" > "$own/.superpowers/sdd/.gitignore"
     printf '# Plan\n\n## Task 1: One\n\nOne.\n' > "$own/plan.md"
     (cd "$own" && git add -A && git -c user.name=t -c user.email=t@t commit -qm init)
-    (cd "$own" && "$SDD_SCRIPTS/sdd-workspace" plan.md >/dev/null)
+    (cd "$own" && bash "$SDD_SCRIPTS/sdd-workspace" plan.md >/dev/null)
     if [[ "$(cat "$own/.superpowers/sdd/.gitignore")" == "$own_ignore" \
         && -z "$(cd "$own" && git status --porcelain -- .superpowers/sdd/.gitignore)" ]]; then
         pass "an existing .superpowers/sdd/.gitignore is not overwritten"
